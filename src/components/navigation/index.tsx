@@ -1,13 +1,13 @@
 "use client";
 
-import colorPalette from "@/theme/color-palette";
 import {
+  Box,
   Container,
+  IconButton,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  SxProps,
   Typography,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
@@ -17,110 +17,49 @@ import SendIcon from "@mui/icons-material/Send";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { useState } from "react";
-
-const backgroundColor = colorPalette.bottomNavigationBar.background;
-const fontColor = colorPalette.bottomNavigationBar.fontColor;
-const fontActiveColor = colorPalette.bottomNavigationBar.fontActiveColor;
-
-const containerSxProps: SxProps = {
-  position: "fixed",
-  left: 0,
-  top: 0,
-  width: "20%",
-  height: "100%",
-  display: "flex",
-  flexDirection: "column",
-  background: backgroundColor,
-  zIndex: 1000,
-  margin: 0,
-  padding: "0 !important",
-  borderRight: "1px solid #f2f2f2",
-  boxShadow: "0 0 20px rgba(0, 0, 0, 0.2)",
-};
-
-const listSxProps: SxProps = {
-  width: "100%",
-  margin: 0,
-  padding: 0,
-};
-
-const titleSxProps: SxProps = {
-  fontFamily: "'Sevillana', cursive",
-  color: fontActiveColor,
-  fontWeight: 700,
-  fontStyle: "italic",
-  letterSpacing: 2,
-  fontSize: "3rem",
-  margin: "3rem auto",
-};
-
-const listItemSxProps: SxProps = {
-  padding: "1rem",
-  color: fontColor,
-  "&:hover": {
-    background: "rgba(255, 255, 255, 0.1)",
-  },
-};
-
-export const listItemActiveSxProps: SxProps = {
-  background: "rgba(255, 255, 255, 0.2)",
-  color: "white",
-  padding: "1rem",
-};
+import { containerSxProps, listItemActiveSxProps, listItemSxProps, listSxProps, titleSxProps, fontColor, fontActiveColor, toggleButtonSxProps } from "./stylesProps";
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import { useAppState } from "@store/store";
+import { NAVIGATION_ACTION_TYPES, NAVIGATION_ACTIONS } from "@store/actions";
 
 interface INavOption {
   icon: React.ReactNode;
   text: string;
-  active: boolean;
 }
 
-const navOptions = (currentStep: number): INavOption[] => {
-  const sxProps = (index: number): SxProps => ({
-    color: currentStep === index ? fontActiveColor : fontColor,
-    fontSize: 30,
-  });
+const navOptions = (): INavOption[] => {
   const data = [
     {
-      icon: <HomeIcon sx={{ color: fontActiveColor, fontSize: 30 }} />,
+      icon: <HomeIcon sx={{fontSize: 30}} />,
       text: "Home",
-      active: true,
     },
     {
-      icon: <SearchIcon sx={{ color: fontColor, fontSize: 30 }} />,
+      icon: <SearchIcon sx={{fontSize: 30}} />,
       text: "Search",
-      active: false,
     },
     {
-      icon: <ExploreIcon sx={{ color: fontColor, fontSize: 30 }} />,
+      icon: <ExploreIcon sx={{fontSize: 30}} />,
       text: "Explore",
-      active: false,
     },
     {
-      icon: <SendIcon sx={{ color: fontActiveColor, fontSize: 30 }} />,
+      icon: <SendIcon sx={{fontSize: 30}} />,
       text: "Messages",
-      active: false,
     },
     {
-      icon: <NotificationsIcon sx={{ color: fontColor, fontSize: 30 }} />,
+      icon: <NotificationsIcon sx={{fontSize: 30}} />,
       text: "Notifications",
-      active: false,
     },
     {
-      icon: <AddCircleOutlineIcon sx={{ color: fontColor, fontSize: 30 }} />,
+      icon: <AddCircleOutlineIcon sx={{fontSize: 30}} />,
       text: "Create",
-      active: false,
     },
     {
-      icon: <SettingsIcon sx={{ color: fontColor, fontSize: 30 }} />,
+      icon: <SettingsIcon sx={{fontSize: 30}} />,
       text: "Settings",
-      active: false,
     },
   ];
-  return data.map((item, index) => ({
-    ...item,
-    active: currentStep === index,
-  }));
+  return data
 };
 
 interface IProps {
@@ -128,27 +67,60 @@ interface IProps {
 }
 
 export default function BottomNavigation({ currentActive }: IProps) {
-  const [currenStep, setCurrentStep] = useState(currentActive);
+  const { state, dispatch } = useAppState();
+  const isCollapsed = state.navigation.isCollapsed;
+  const currenStep = state.navigation.currentIndex;
+
+  const setCurrentStep = (index: number) => {
+    dispatch({ type: NAVIGATION_ACTIONS.SET_CURRENT_INDEX, payload: index } as NAVIGATION_ACTION_TYPES);
+  }
+
+  const setIsCollapsed = (isCollapsed: boolean) => {
+    dispatch({ type: NAVIGATION_ACTIONS.SET_IS_COLLAPSED, payload: isCollapsed } as NAVIGATION_ACTION_TYPES);
+  }
+
+  const getListItemColor = (active: boolean) => {
+    return active ? fontActiveColor : fontColor;
+  }
+
+  const toggleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  }
+
+  const showCollapseIcon = () => {
+    return (
+      <Box sx={{...toggleButtonSxProps, right: isCollapsed ? '-20%' : '-5%'}}>
+        <IconButton onClick={toggleCollapse} sx={{background: fontActiveColor}}>
+          {isCollapsed ? <KeyboardDoubleArrowRightIcon /> : <KeyboardDoubleArrowLeftIcon />}
+        </IconButton>
+      </Box>
+    )
+  } 
 
   return (
-    <Container sx={containerSxProps} component={"nav"}>
-      <Typography variant={"h4"} sx={titleSxProps}>
-        Superb
+    <Container sx={{...containerSxProps, width: isCollapsed ? '5%' : '20%'}} component={"nav"}>
+      {showCollapseIcon()}
+      <Typography variant={isCollapsed ? "h3" : "h4"} sx={titleSxProps}>
+        {isCollapsed ? "S" : "Superb"}
       </Typography>
       <List sx={listSxProps}>
-        {navOptions(currenStep).map((option: INavOption, index: number) => (
+        {navOptions().map((option: INavOption, index: number) => (
           <ListItem
             key={index}
             sx={currenStep === index ? listItemActiveSxProps : listItemSxProps}
             onClick={() => setCurrentStep(index)}
           >
-            <ListItemIcon>{option.icon}</ListItemIcon>
-            <ListItemText
-              primary={option.text}
-              primaryTypographyProps={{
-                sx: { color: fontColor, fontSize: 20 },
-              }}
-            />
+            <ListItemIcon sx={{color: getListItemColor(index === currenStep), padding: isCollapsed ? '0.5rem 1rem' : '0'}}>{option.icon}</ListItemIcon>
+            {
+              !isCollapsed && (
+                <ListItemText
+                  primary={option.text}
+                  primaryTypographyProps={{
+                    sx: { color: getListItemColor(index === currenStep), fontSize: 20 },
+                  }}
+                />
+              )
+            }
           </ListItem>
         ))}
       </List>
