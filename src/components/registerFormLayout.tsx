@@ -1,38 +1,21 @@
-import { Container, Typography, Box } from "@mui/material";
-import { fontActiveColor } from "./navigation/stylesProps";
-import Image from "next/image";
-import { registerContainerSxProps } from "./styles";
+import { Container } from "@mui/material";
+import { blurContainerSxProps, registerContainerSxProps } from "./styles";
+import HorizontalHeader from "./header/horizontalHeader";
 
 interface IProps {
   formElement: JSX.Element;
-  extraElement: JSX.Element;
 }
 
 export default function RegisterFormLayout({
   formElement,
-  extraElement,
 }: IProps) {
-  const renderLogo = () => {
-    return (
-      <Box sx={{ marginBottom: "2rem" }}>
-        <Image
-          src={"/assets/images/logo-no-background.png"}
-          alt={"logo"}
-          width={220}
-          height={150}
-          objectFit={"cover"}
-        />
-      </Box>
-    );
-  };
+
   return (
-    <Container sx={registerContainerSxProps}>
-      {renderLogo()}
-      <Typography variant="h4" sx={{ color: fontActiveColor }} gutterBottom>
-        Login here
-      </Typography>
-      {formElement}
-      {extraElement}
+    <Container maxWidth={false} sx={registerContainerSxProps}>
+      <Container maxWidth={false} sx={blurContainerSxProps}>
+        <HorizontalHeader />
+        {formElement}
+      </Container>
     </Container>
   );
 }

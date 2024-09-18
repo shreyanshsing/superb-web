@@ -1,16 +1,13 @@
-import colorPalette from "@/theme/color-palette";
-import { fontActiveColor } from "@components/navigation/stylesProps";
-import { SxProps } from "@mui/material";
+import { fontColor } from "@components/navigation/stylesProps";
+import styled from "@emotion/styled";
+import { Button, SxProps, TextField } from "@mui/material";
 
 
 export const formContainerSxProps: SxProps = {
-    width: '80%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
     padding: '1rem',
-    marginVertical: '1rem',
+    marginTop: '2rem',
+    marginLeft: '3rem',
+    overflowY: 'auto !important',
 }
 
 export const fieldContainerSxProps: SxProps = {
@@ -19,18 +16,29 @@ export const fieldContainerSxProps: SxProps = {
 }
 
 export const labelSxProps: SxProps = {
-    color: fontActiveColor,
-    marginBottom: '0.1rem',
+    color: fontColor,
+    fontSize: '1.3rem',
+    marginLeft: '0.5rem',
+    fontWeight: 300,
 }
 
-export const buttonSxProps: SxProps = {
-    width: '100%',
-    marginTop: '1rem',
-    padding: '0.5rem',
-    color: colorPalette.bottomNavigationBar.fontActiveColor,
-    borderColor: colorPalette.bottomNavigationBar.fontActiveColor,
-    '&:hover': {
-        backgroundColor: colorPalette.bottomNavigationBar.fontColor,
-        color: colorPalette.bottomNavigationBar.background,
+export const CustomTextField = styled(TextField)`
+    & .MuiInputBase-root {
+        color: ${fontColor};
+        border: none !important;
+        background-color: #333333;
+        border-radius: 20px;
+        padding: 0.5rem 1rem;
+        margin-top: 0.5rem;
+        font-size: 1.2rem;
     }
-}
+`;
+
+export const CustomOutlinedButton = styled(Button)`
+    border-radius: 20px;
+    padding: 1rem;
+    margin: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: capitalize;
+`;

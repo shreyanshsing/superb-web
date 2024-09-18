@@ -62,11 +62,7 @@ const navOptions = (): INavOption[] => {
   return data
 };
 
-interface IProps {
-  currentActive: number;
-}
-
-export default function BottomNavigation({ currentActive }: IProps) {
+export default function BottomNavigation() {
   const { state, dispatch } = useAppState();
   const isCollapsed = state.navigation.isCollapsed;
   const currenStep = state.navigation.currentIndex;

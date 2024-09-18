@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -15,7 +19,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "incremental": true,
     "plugins": [
       {
@@ -23,19 +27,48 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@components/*": ["./src/components/*"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@config/*": ["./src/config/*"],
-      "@services/*": ["./src/app/api/*"],
-      "@shared/*": ["./src/shared/*"],
-      "@middlewares/*": ["./src/middlewares/*"],
-      "@assets/*": ["./public/assets/*"],
-      "@theme/*": ["./src/theme/*"],
-      "@store/*": ["./src/store/*"],
-      "@router/*": ["./src/router/*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@config/*": [
+        "./src/config/*"
+      ],
+      "@services/*": [
+        "./src/app/api/*"
+      ],
+      "@shared/*": [
+        "./src/shared/*"
+      ],
+      "@middlewares/*": [
+        "./src/middlewares/*"
+      ],
+      "@assets/*": [
+        "./public/assets/*"
+      ],
+      "@theme/*": [
+        "./src/theme/*"
+      ],
+      "@store/*": [
+        "./src/store/*"
+      ],
+      "@router/*": [
+        "./src/router/*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

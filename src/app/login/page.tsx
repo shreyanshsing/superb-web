@@ -1,13 +1,20 @@
 "use client";
 
-import { Typography, Box, FormLabel, TextField, Button, InputAdornment } from "@mui/material";
 import {
-  buttonSxProps,
+  Typography,
+  Box,
+  FormLabel,
+  Button,
+  InputAdornment,
+} from "@mui/material";
+import {
+  CustomOutlinedButton,
+  CustomTextField,
   fieldContainerSxProps,
   formContainerSxProps,
   labelSxProps,
 } from "./styles";
-import { fontActiveColor } from "@/components/navigation/stylesProps";
+import { fontActiveColor, fontColor } from "@/components/navigation/stylesProps";
 import RegisterFormLayout from "@/components/registerFormLayout";
 import { useState } from "react";
 import useCustomRouter from "@/router";
@@ -35,20 +42,18 @@ export default function Login() {
         <FormLabel sx={labelSxProps}>
           Email <sup>*</sup>
         </FormLabel>
-        <TextField
-          variant={"outlined"}
+        <CustomTextField
           type="email"
-          margin={"dense"}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           slotProps={{
             input: {
-                endAdornment: (
-                    <InputAdornment position={'end'}>
-                        <EmailIcon sx={{color: fontActiveColor}} />
-                    </InputAdornment>
-                )
-            }
+              endAdornment: (
+                <InputAdornment position={"end"}>
+                  <EmailIcon sx={{ color: fontActiveColor }} />
+                </InputAdornment>
+              ),
+            },
           }}
           fullWidth
           required
@@ -63,90 +68,93 @@ export default function Login() {
         <FormLabel sx={labelSxProps}>
           Password <sup>*</sup>
         </FormLabel>
-        <TextField
-          variant={"outlined"}
+        <CustomTextField
           type="password"
-          margin={"dense"}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           slotProps={{
             input: {
-                endAdornment: (
-                    <InputAdornment position={'end'}>
-                        <PasswordIcon sx={{color: fontActiveColor}} />
-                    </InputAdornment>
-                )
-            }
+              endAdornment: (
+                <InputAdornment position={"end"}>
+                  <PasswordIcon sx={{ color: fontActiveColor }} />
+                </InputAdornment>
+              ),
+            },
           }}
           fullWidth
           required
         />
-        {renderForgotPassword()}
       </Box>
     );
   };
 
   const renderLoginButton = () => {
     return (
-      <Box>
-        <Button
-          variant="outlined"
+      <Box sx={{display: 'flex', justifyContent: 'space-between', marginTop: '3rem'}}>
+        <CustomOutlinedButton
+          variant={'outlined'}
           type="submit"
           onClick={handleLogin}
-          sx={buttonSxProps}
+          sx={{ width: "45%", color: fontActiveColor, borderColor: fontActiveColor }}
+        >
+          Forgot Password
+        </CustomOutlinedButton>
+        <CustomOutlinedButton
+          variant={'contained'}
+          type="submit"
+          onClick={handleLogin}
+          color={'primary'}
+          sx={{ width: "45%" }}
         >
           Login
-        </Button>
-      </Box>
-    );
-  };
-
-  const renderForgotPassword = () => {
-    return (
-      <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
-        <Button variant={"text"} sx={{ color: fontActiveColor }}>
-          Forgot Password?
-        </Button>
+        </CustomOutlinedButton>
       </Box>
     );
   };
 
   const renderSignupBlock = () => {
     return (
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Typography sx={{ color: fontActiveColor }}>
+      <Box margin={'1rem auto'}>
+        <Typography variant={'h5'} sx={{ color: fontColor, fontWeight: 300 }}>
           Don't have an account?
+          <Button
+            variant={"text"}
+            onClick={handleSignup}
+            sx={{ fontWeight: 400, fontSize: "1.5rem", marginLeft: "0.5rem", textTransform: 'capitalize'}}
+          >
+            Sign Up
+          </Button>
         </Typography>
-        <Button
-          variant={"text"}
-          onClick={handleSignup}
-          sx={{ color: fontActiveColor }}
-        >
-          Sign Up
-        </Button>
       </Box>
     );
   };
+
+  const showHeading = () => {
+    return (
+      <Box>
+        <Typography variant={'h5'} marginBottom={'1rem'} sx={{ color: fontColor, fontWeight: 300 }} gutterBottom>
+          Welcome back! <br />
+        </Typography>
+        <Typography variant={"h2"} letterSpacing={2} fontWeight={700} sx={{ color: fontActiveColor }} gutterBottom>
+          Login here
+        </Typography>
+      </Box>
+    )
+  }
 
   return (
     <RegisterFormLayout
       formElement={
         <Box sx={formContainerSxProps}>
-          <form style={{ width: "100%" }}>
+            {showHeading()}
+            {renderSignupBlock()}
+          <form style={{ width: "40%" }}>
             {renderEmailField()}
             {renderPasswordField()}
             {renderLoginButton()}
           </form>
         </Box>
       }
-      extraElement={renderSignupBlock()}
     />
   );
 }
