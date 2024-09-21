@@ -1,24 +1,18 @@
-import colorPalette from "@/theme/color-palette";
+import { fontActiveColor, fontColor, surfacePrimary } from "@/theme/color-palette";
 import { SxProps } from "@mui/material/styles";
-
-const backgroundColor = colorPalette.bottomNavigationBar.background;
-const fontColor = colorPalette.bottomNavigationBar.fontColor;
-const fontActiveColor = colorPalette.bottomNavigationBar.fontActiveColor;
 
 const containerSxProps: SxProps = {
   position: "fixed",
   left: 0,
   top: 0,
-  width: "20%",
   height: "100%",
   display: "flex",
   flexDirection: "column",
-  background: backgroundColor,
+  background: surfacePrimary,
   zIndex: 1000,
   margin: 0,
   padding: "0 !important",
-  borderRight: "1px solid #f2f2f2",
-  boxShadow: "0 0 20px rgba(0, 0, 0, 0.2)",
+  boxShadow: "0 0 20px rgba(0, 0, 0, 0.3)",
   transition: "width 0.3s ease-in-out",
 };
 
@@ -61,7 +55,6 @@ const toggleButtonSxProps: SxProps = {
   right: '-5%',
   transition: "right 0.3s ease-in-out",
   zIndex: 1000,
-  border: "1px solid #f2f2f2",
   borderRadius: "50%",
 };
 

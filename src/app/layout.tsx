@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
+import { ThemeProvider } from "@mui/material";
+import theme from "@/theme/theme";
+import AppStateProvider from "@/store/store";
 
 export const metadata: Metadata = {
   title: "Superb",
   description: "Build by fans for fans",
-  icons: [
-    '/assets/images/logo.png',
-  ]
+  icons: ["/assets/images/logo.png"],
 };
 
 export default function RootLayout({
@@ -37,7 +39,13 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body style={{margin: 0}}>{children}</body>
+      <body style={{ margin: 0 }}>
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={theme}>
+            <AppStateProvider>{children}</AppStateProvider>
+          </ThemeProvider>
+        </AppRouterCacheProvider>
+      </body>
     </html>
   );
 }

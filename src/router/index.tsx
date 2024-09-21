@@ -7,17 +7,24 @@ const useCustomRouter = () => {
   const params = useParams();
 
   const navigateTo = (path: string, params?: any) => {
-    const newPath= path + (params ? `?${new URLSearchParams(params).toString()}` : '');
+    const newPath = path + (params ? `?${new URLSearchParams(params).toString()}` : '');
     router.push(newPath);
+    
   };
 
   const getParams = (key: string) => {
     return params[key];
   }
 
+  const replace = (path: string, params?: any) => {
+    const newPath = path + (params ? `?${new URLSearchParams(params).toString()}` : '');
+    router.replace(newPath);
+  }
+
   return {
     navigateTo,
-    getParams
+    getParams,
+    replace
   };
 };
 

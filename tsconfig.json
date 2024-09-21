@@ -59,7 +59,10 @@
       ],
       "@router/*": [
         "./src/router/*"
-      ]
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
     }
   },
   "include": [

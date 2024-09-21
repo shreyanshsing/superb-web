@@ -1,17 +1,17 @@
 'use client';
 
 import BottomNavigation from "@/components/navigation";
-import AppStateProvider from "@/store/store";
+import ResizeablePageLayout from "@/components/resizeablePageLayout";
 
 export default function DashboardLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <AppStateProvider>
+    <ResizeablePageLayout>
       <main>
         {children}
-        <BottomNavigation currentActive={0} />
+        <BottomNavigation  />
       </main>
-    </AppStateProvider>
+    </ResizeablePageLayout>
   );
 }

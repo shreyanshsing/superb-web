@@ -6,10 +6,10 @@ import {
   FormLabel,
   Button,
   InputAdornment,
+  OutlinedInput,
 } from "@mui/material";
 import {
   CustomOutlinedButton,
-  CustomTextField,
   fieldContainerSxProps,
   formContainerSxProps,
   labelSxProps,
@@ -42,20 +42,15 @@ export default function Login() {
         <FormLabel sx={labelSxProps}>
           Email <sup>*</sup>
         </FormLabel>
-        <CustomTextField
+        <OutlinedInput
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          slotProps={{
-            input: {
-              endAdornment: (
-                <InputAdornment position={"end"}>
-                  <EmailIcon sx={{ color: fontActiveColor }} />
-                </InputAdornment>
-              ),
-            },
-          }}
-          fullWidth
+          endAdornment= {
+            <InputAdornment position={"end"}>
+              <EmailIcon sx={{ color: fontActiveColor }} />
+            </InputAdornment>
+          }
           required
         />
       </Box>
@@ -68,20 +63,15 @@ export default function Login() {
         <FormLabel sx={labelSxProps}>
           Password <sup>*</sup>
         </FormLabel>
-        <CustomTextField
+        <OutlinedInput
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          slotProps={{
-            input: {
-              endAdornment: (
-                <InputAdornment position={"end"}>
-                  <PasswordIcon sx={{ color: fontActiveColor }} />
-                </InputAdornment>
-              ),
-            },
-          }}
-          fullWidth
+          endAdornment={
+            <InputAdornment position={"end"}>
+              <PasswordIcon sx={{ color: fontActiveColor }} />
+            </InputAdornment>
+          }
           required
         />
       </Box>

@@ -9,8 +9,9 @@ import {
   Grid2,
   InputAdornment,
   Typography,
+  OutlinedInput,
 } from "@mui/material";
-import { CustomOutlinedButton, CustomTextField, formContainerSxProps, labelSxProps } from "../login/styles";
+import { CustomOutlinedButton, formContainerSxProps, labelSxProps } from "../login/styles";
 import { fontActiveColor, fontColor } from "@/components/navigation/stylesProps";
 import useCustomRouter from "@/router/index";
 import Routes from "@/router/paths";
@@ -56,21 +57,15 @@ export default function SignUp() {
         <FormLabel sx={labelSxProps}>
           Email <sup>*</sup>
         </FormLabel>
-        <CustomTextField
-          variant={"outlined"}
+        <OutlinedInput
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          slotProps={{
-            input: {
-              endAdornment: (
-                <InputAdornment position={"end"}>
-                  <EmailIcon sx={{ color: fontActiveColor }} />
-                </InputAdornment>
-              ),
-            },
-          }}
-          fullWidth
+          endAdornment={
+            <InputAdornment position={"end"}>
+              <EmailIcon sx={{ color: fontActiveColor }} />
+            </InputAdornment>
+          }
           required
         />
       </Grid2>
@@ -83,21 +78,15 @@ export default function SignUp() {
         <FormLabel sx={labelSxProps}>
           Full Name <sup>*</sup>
         </FormLabel>
-        <CustomTextField
-          variant={"outlined"}
+        <OutlinedInput
           type="text"
           value={fullname}
           onChange={(e) => setFullname(e.target.value)}
-          slotProps={{
-            input: {
-              endAdornment: (
-                <InputAdornment position={"end"}>
-                  <PersonIcon sx={{ color: fontActiveColor }} />
-                </InputAdornment>
-              ),
-            },
-          }}
-          fullWidth
+          endAdornment={
+            <InputAdornment position={"end"}>
+              <PersonIcon sx={{ color: fontActiveColor }} />
+            </InputAdornment>
+          }
           required
         />
       </Grid2>
@@ -110,21 +99,15 @@ export default function SignUp() {
         <FormLabel sx={labelSxProps}>
           Password <sup>*</sup>
         </FormLabel>
-        <CustomTextField
-          variant={"outlined"}
+        <OutlinedInput
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          slotProps={{
-            input: {
-              endAdornment: (
-                <InputAdornment position={"end"}>
-                  <PasswordIcon sx={{ color: fontActiveColor }} />
-                </InputAdornment>
-              ),
-            },
-          }}
-          fullWidth
+          endAdornment={
+            <InputAdornment position={"end"}>
+              <PasswordIcon sx={{ color: fontActiveColor }} />
+            </InputAdornment>
+          }
           required
         />
       </Grid2>
@@ -137,21 +120,15 @@ export default function SignUp() {
         <FormLabel sx={labelSxProps}>
           Confirm Password <sup>*</sup>
         </FormLabel>
-        <CustomTextField
-          variant={"outlined"}
+        <OutlinedInput
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
-          slotProps={{
-            input: {
-              endAdornment: (
-                <InputAdornment position={"end"}>
-                  <PasswordIcon sx={{ color: fontActiveColor }} />
-                </InputAdornment>
-              ),
-            },
-          }}
-          fullWidth
+          endAdornment={
+            <InputAdornment position={"end"}>
+              <PasswordIcon sx={{ color: fontActiveColor }} />
+            </InputAdornment>
+          }
           required
         />
       </Grid2>
@@ -162,21 +139,15 @@ export default function SignUp() {
     return (
       <Grid2 size={6}>
         <FormLabel sx={labelSxProps}>Phone</FormLabel>
-        <CustomTextField
-          variant={"outlined"}
+        <OutlinedInput
           type="tel"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
-          slotProps={{
-            input: {
-              endAdornment: (
-                <InputAdornment position={"end"}>
-                  <PhoneIcon sx={{ color: fontActiveColor }} />
-                </InputAdornment>
-              ),
-            },
-          }}
-          fullWidth
+          endAdornment={
+            <InputAdornment position={"end"}>
+              <PhoneIcon sx={{ color: fontActiveColor }} />
+            </InputAdornment>
+          }
         />
       </Grid2>
     );
@@ -186,21 +157,15 @@ export default function SignUp() {
     return (
       <Grid2 size={6}>
         <FormLabel sx={labelSxProps}>Country</FormLabel>
-        <CustomTextField
-          variant={"outlined"}
+        <OutlinedInput
           type="text"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
-          slotProps={{
-            input: {
-              endAdornment: (
-                <InputAdornment position={"end"}>
-                  <CountryIcon sx={{ color: fontActiveColor }} />
-                </InputAdornment>
-              ),
-            },
-          }}
-          fullWidth
+          endAdornment={
+            <InputAdornment position={"end"}>
+              <CountryIcon sx={{ color: fontActiveColor }} />
+            </InputAdornment>
+          }
         />
       </Grid2>
     );
@@ -276,7 +241,7 @@ export default function SignUp() {
     return (
       <Box margin={'1rem auto'}>
         <Typography variant={'h5'} sx={{ color: fontColor, fontWeight: 300 }}>
-          Already A Member?
+          Already a member?
           <Button
             variant={"text"}
             onClick={handleLogin}

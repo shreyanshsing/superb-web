@@ -1,6 +1,6 @@
 import { fontColor } from "@components/navigation/stylesProps";
 import styled from "@emotion/styled";
-import { Button, SxProps, TextField } from "@mui/material";
+import { Button, SxProps } from "@mui/material";
 
 
 export const formContainerSxProps: SxProps = {
@@ -22,22 +22,10 @@ export const labelSxProps: SxProps = {
     fontWeight: 300,
 }
 
-export const CustomTextField = styled(TextField)`
-    & .MuiInputBase-root {
-        color: ${fontColor};
-        border: none !important;
-        background-color: #333333;
-        border-radius: 20px;
-        padding: 0.5rem 1rem;
-        margin-top: 0.5rem;
-        font-size: 1.2rem;
-    }
-`;
-
 export const CustomOutlinedButton = styled(Button)`
     border-radius: 20px;
     padding: 1rem;
-    margin: 0.5rem;
+    margin: 0.3rem;
     font-size: 1.2rem;
     font-weight: 500;
     text-transform: capitalize;

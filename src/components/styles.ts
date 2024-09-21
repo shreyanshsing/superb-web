@@ -1,3 +1,4 @@
+import { surfaceSecondary } from "@/theme/color-palette";
 import { SxProps } from "@mui/material";
 
 export const registerContainerSxProps: SxProps = {
@@ -18,4 +19,12 @@ export const blurContainerSxProps: SxProps = {
     margin: '0',
     padding: '1rem',
     backgroundImage: ' linear-gradient(90deg, rgba(13, 13, 13,1), rgba(13, 13, 13, 1), rgba(13, 13, 13, 0.8), rgba(13, 13, 13, 0.3))',
+}
+
+export const resizeContainerSxProps: SxProps = {
+    padding: '1rem',
+    backgroundColor: surfaceSecondary,
+    transition: "width 0.3s ease-in-out",
+    height: '100vh',
+    overflowY: "hidden"
 }

@@ -11,90 +11,128 @@ import {
   Typography,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
-import SearchIcon from "@mui/icons-material/Search";
+import ProfileIcon from "@mui/icons-material/AccountCircle";
 import ExploreIcon from "@mui/icons-material/Explore";
 import SendIcon from "@mui/icons-material/Send";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { containerSxProps, listItemActiveSxProps, listItemSxProps, listSxProps, titleSxProps, fontColor, fontActiveColor, toggleButtonSxProps } from "./stylesProps";
-import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
-import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import {
+  containerSxProps,
+  listItemActiveSxProps,
+  listItemSxProps,
+  listSxProps,
+  titleSxProps,
+  fontColor,
+  fontActiveColor,
+  toggleButtonSxProps,
+} from "./stylesProps";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import { useAppState } from "@store/store";
 import { NAVIGATION_ACTION_TYPES, NAVIGATION_ACTIONS } from "@store/actions";
+import useCustomRouter from "@/router";
+import Paths from "@/router/paths";
 
 interface INavOption {
   icon: React.ReactNode;
   text: string;
+  route: string;
 }
 
 const navOptions = (): INavOption[] => {
   const data = [
     {
-      icon: <HomeIcon sx={{fontSize: 30}} />,
+      icon: <HomeIcon sx={{ fontSize: 30 }} />,
       text: "Home",
+      route: Paths.DASHBOARD,
     },
     {
-      icon: <SearchIcon sx={{fontSize: 30}} />,
-      text: "Search",
-    },
-    {
-      icon: <ExploreIcon sx={{fontSize: 30}} />,
+      icon: <ExploreIcon sx={{ fontSize: 30 }} />,
       text: "Explore",
+      route: Paths.EXPLORE,
     },
     {
-      icon: <SendIcon sx={{fontSize: 30}} />,
+      icon: <SendIcon sx={{ fontSize: 30 }} />,
       text: "Messages",
+      route: Paths.MESSAGES,
     },
     {
-      icon: <NotificationsIcon sx={{fontSize: 30}} />,
+      icon: <NotificationsIcon sx={{ fontSize: 30 }} />,
       text: "Notifications",
+      route: Paths.NOTIFICATIONS,
     },
     {
-      icon: <AddCircleOutlineIcon sx={{fontSize: 30}} />,
+      icon: <AddCircleOutlineIcon sx={{ fontSize: 30 }} />,
       text: "Create",
+      route: Paths.CREATE,
     },
     {
-      icon: <SettingsIcon sx={{fontSize: 30}} />,
+      icon: <ProfileIcon sx={{ fontSize: 30 }} />,
+      text: "Profile",
+      route: Paths.PROFILE,
+    },
+    {
+      icon: <SettingsIcon sx={{ fontSize: 30 }} />,
       text: "Settings",
+      route: Paths.SETTINGS,
     },
   ];
-  return data
+  return data;
 };
 
 export default function BottomNavigation() {
   const { state, dispatch } = useAppState();
+  const { navigateTo } = useCustomRouter();
   const isCollapsed = state.navigation.isCollapsed;
   const currenStep = state.navigation.currentIndex;
 
   const setCurrentStep = (index: number) => {
-    dispatch({ type: NAVIGATION_ACTIONS.SET_CURRENT_INDEX, payload: index } as NAVIGATION_ACTION_TYPES);
-  }
+    const newPath = navOptions()[index].route;
+    navigateTo(newPath);
+    dispatch({
+      type: NAVIGATION_ACTIONS.SET_CURRENT_INDEX,
+      payload: index,
+    } as NAVIGATION_ACTION_TYPES);
+  };
 
   const setIsCollapsed = (isCollapsed: boolean) => {
-    dispatch({ type: NAVIGATION_ACTIONS.SET_IS_COLLAPSED, payload: isCollapsed } as NAVIGATION_ACTION_TYPES);
-  }
+    dispatch({
+      type: NAVIGATION_ACTIONS.SET_IS_COLLAPSED,
+      payload: isCollapsed,
+    } as NAVIGATION_ACTION_TYPES);
+  };
 
   const getListItemColor = (active: boolean) => {
     return active ? fontActiveColor : fontColor;
-  }
+  };
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
-  }
+  };
 
   const showCollapseIcon = () => {
     return (
-      <Box sx={{...toggleButtonSxProps, right: isCollapsed ? '-20%' : '-5%'}}>
-        <IconButton onClick={toggleCollapse} sx={{background: fontActiveColor}}>
-          {isCollapsed ? <KeyboardDoubleArrowRightIcon /> : <KeyboardDoubleArrowLeftIcon />}
+      <Box sx={{ ...toggleButtonSxProps, right: isCollapsed ? "-20%" : "-5%" }}>
+        <IconButton
+          onClick={toggleCollapse}
+          sx={{ background: fontActiveColor }}
+        >
+          {isCollapsed ? (
+            <KeyboardDoubleArrowRightIcon />
+          ) : (
+            <KeyboardDoubleArrowLeftIcon />
+          )}
         </IconButton>
       </Box>
-    )
-  } 
+    );
+  };
 
   return (
-    <Container sx={{...containerSxProps, width: isCollapsed ? '5%' : '20%'}} component={"nav"}>
+    <Container
+      sx={{ ...containerSxProps, width: isCollapsed ? "5%" : "18%" }}
+      component={"nav"}
+    >
       {showCollapseIcon()}
       <Typography variant={isCollapsed ? "h3" : "h4"} sx={titleSxProps}>
         {isCollapsed ? "S" : "Superb"}
@@ -106,17 +144,25 @@ export default function BottomNavigation() {
             sx={currenStep === index ? listItemActiveSxProps : listItemSxProps}
             onClick={() => setCurrentStep(index)}
           >
-            <ListItemIcon sx={{color: getListItemColor(index === currenStep), padding: isCollapsed ? '0.5rem 1rem' : '0'}}>{option.icon}</ListItemIcon>
-            {
-              !isCollapsed && (
-                <ListItemText
-                  primary={option.text}
-                  primaryTypographyProps={{
-                    sx: { color: getListItemColor(index === currenStep), fontSize: 20 },
-                  }}
-                />
-              )
-            }
+            <ListItemIcon
+              sx={{
+                color: getListItemColor(index === currenStep),
+                padding: isCollapsed ? "0.5rem 1rem" : "0",
+              }}
+            >
+              {option.icon}
+            </ListItemIcon>
+            {!isCollapsed && (
+              <ListItemText
+                primary={option.text}
+                primaryTypographyProps={{
+                  sx: {
+                    color: getListItemColor(index === currenStep),
+                    fontSize: 20,
+                  },
+                }}
+              />
+            )}
           </ListItem>
         ))}
       </List>

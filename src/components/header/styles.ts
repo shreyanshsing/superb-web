@@ -1,7 +1,6 @@
-import colorPalette from "@/theme/color-palette";
 import { type SxProps } from "@mui/material/styles";
 import styled from "@emotion/styled";
-import { fontActiveColor } from "../navigation/stylesProps";
+import { fontActiveColor, fontColor } from "@/theme/color-palette";
 
 export const headerConatinerSxProps: SxProps = {
     margin: '0',
@@ -18,7 +17,7 @@ export const listSxProps: SxProps = {
     listStyleType: 'none',
     padding: '1rem',
     margin: '0 auto',
-    color: colorPalette?.bottomNavigationBar?.fontActiveColor,
+    color: fontActiveColor,
 };
 
 export const headingSxProps: SxProps = {
@@ -32,13 +31,13 @@ export const headingSxProps: SxProps = {
 }
 
 export const NavLinks = styled.a`
-    color: ${colorPalette?.bottomNavigationBar?.fontColor};
+    color: ${fontColor};
     text-decoration: none;
     font-family: 'Roboto';
     font-size: 1.2rem;
     font-weight: 500;
     margin: 0 2rem;
     &:hover {
-        color: ${colorPalette?.bottomNavigationBar?.fontActiveColor};
+        color: ${fontActiveColor};
     }
 `;
