@@ -3,6 +3,8 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { ThemeProvider } from "@mui/material";
 import theme from "@/theme/theme";
 import AppStateProvider from "@/store/store";
+import { Provider } from "@/app/trpc/Provider";
+import { SnackbarProvider } from "@/components/snackbar/Provider";
 
 export const metadata: Metadata = {
   title: "Superb",
@@ -40,11 +42,15 @@ export default function RootLayout({
         />
       </head>
       <body style={{ margin: 0 }}>
-        <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>
-            <AppStateProvider>{children}</AppStateProvider>
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+        <Provider>
+          <AppRouterCacheProvider>
+            <ThemeProvider theme={theme}>
+              <AppStateProvider>
+                <SnackbarProvider>{children}</SnackbarProvider>
+              </AppStateProvider>
+            </ThemeProvider>
+          </AppRouterCacheProvider>
+        </Provider>
       </body>
     </html>
   );

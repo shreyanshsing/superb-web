@@ -1,7 +1,7 @@
 'use client';
 
 import { createTheme } from "@mui/material";
-import { fontActiveColor, fontColor, surfaceSecondary } from "./color-palette";
+import { fontActiveColor, fontColor, surfacePrimary, surfaceSecondary } from "./color-palette";
 
 const theme = createTheme({
     cssVariables: true,
@@ -49,6 +49,16 @@ const theme = createTheme({
                 },
             },
         },
+        MuiCard: {
+            styleOverrides: {
+                root: {
+                    color: `${fontActiveColor} !important`,
+                    border: 'none !important',
+                    backgroundColor: surfacePrimary,
+                    borderRadius: '20px',
+                },
+            }
+        }
     }
 })
 

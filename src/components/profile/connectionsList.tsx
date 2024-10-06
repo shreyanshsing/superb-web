@@ -24,13 +24,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
 import { mockUserData } from "@/utils/mockData";
 
-const activeColors = {
+export const activeColors = {
   color: `${fontActiveColor} !important`,
   backgroundColor: tabActiveColor,
   padding: "1.5rem",
 };
 
-const inactiveColors = {
+export const inactiveColors = {
   color: fontColor,
   borderBottom: `1px solid ${tabActiveColor}`,
 };
@@ -85,7 +85,7 @@ const ConnectionsList = () => {
   return (
     <Container
       maxWidth={false}
-      sx={{ ...infoContainerSxProps, border: `1px solid ${tabActiveColor}`, maxHeight: "90%", overflow: "hidden" }}
+      sx={{ ...infoContainerSxProps, maxHeight: "90%", overflow: "hidden" }}
     >
       <Tabs
         onChange={(_, val) => setValue(val)}

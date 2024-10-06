@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -27,51 +23,23 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@components/*": [
-        "./src/components/*"
-      ],
-      "@hooks/*": [
-        "./src/hooks/*"
-      ],
-      "@config/*": [
-        "./src/config/*"
-      ],
-      "@services/*": [
-        "./src/app/api/*"
-      ],
-      "@shared/*": [
-        "./src/shared/*"
-      ],
-      "@middlewares/*": [
-        "./src/middlewares/*"
-      ],
-      "@assets/*": [
-        "./public/assets/*"
-      ],
-      "@theme/*": [
-        "./src/theme/*"
-      ],
-      "@store/*": [
-        "./src/store/*"
-      ],
-      "@router/*": [
-        "./src/router/*"
-      ],
-      "@utils/*": [
-        "./src/utils/*"
-      ],
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@config/*": ["./src/config/*"],
+      "@services/*": ["./src/app/api/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@middlewares/*": ["./src/middlewares/*"],
+      "@assets/*": ["./public/assets/*"],
+      "@theme/*": ["./src/theme/*"],
+      "@store/*": ["./src/store/*"],
+      "@router/*": ["./src/router/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@server/*": ["./src/server/*"],
+      "@trpc-client/*": ["./src/app/trpc/*"],
+      "@api/*": ["./src/app/api/*"],
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }

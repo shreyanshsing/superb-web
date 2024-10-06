@@ -8,12 +8,20 @@ export const navigationInitialState: NavigationState = {
     isCollapsed: false
 }
 
+export interface SnackbarState {
+    snackbar: any[];
+}
+
+export const snackbarInitialState: SnackbarState = {
+    snackbar: []
+}
+
 export type AppState = {
     user: any,
-    navigation: NavigationState
+    navigation: NavigationState,
 }
 
 export const AppInitialState: AppState = {
     user: null,
-    navigation: navigationInitialState
+    navigation: navigationInitialState,
 }

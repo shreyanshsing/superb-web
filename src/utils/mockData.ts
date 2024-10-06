@@ -1,3 +1,6 @@
+import { CardImage1, CardImage2, CardImage3 } from "./contants";
+import { POST_MEDIA_CATEGORY } from "./enums";
+
 export const mockUserData = [
     {
         id: 1,
@@ -100,3 +103,36 @@ export const mockUserData = [
         wallpaper: "/assets/images/wallpaper8.jpg",
     },
 ];
+
+export const mockPostData = [
+    {
+        id: 1,
+        user: "Jane Smith",
+        mediaUrls: [CardImage1],
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
+        likes: 100,
+        comments: 50,
+        saved: true,
+        category: POST_MEDIA_CATEGORY.SINGLE_MEDIA,
+    },
+    {
+        id:   2,
+        user: "John Doe",
+        mediaUrls: [CardImage2, CardImage3],
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
+        likes: 100,
+        comments: 50,
+        saved: false,
+        category: POST_MEDIA_CATEGORY.MULTI_MEDIA,
+    },
+    {
+        id: 3,
+        user: "Jesselyn Wang",
+        mediaUrls: [CardImage3],
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
+        likes: 100,
+        comments: 50,
+        saved: true,
+        category: POST_MEDIA_CATEGORY.NO_MEDIA,
+    },
+]
