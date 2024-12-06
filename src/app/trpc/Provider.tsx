@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { httpBatchLink } from "@trpc/client/links/httpBatchLink";
 import { trpc } from "@trpc-client/client";
 import SuperJSON from "superjson";
+import LocalStorageService from "@local-storage";
 
 const url = "http://localhost:3000/api/trpc";
 
@@ -25,6 +26,11 @@ export const Provider = ({ children }: { children: ReactNode }) => {
       httpBatchLink({
         transformer: SuperJSON,
         url: url,
+        headers() {
+          return {
+            Authorization: "Bearer " + LocalStorageService.getItem("token"),
+          };
+        },
       }),
     ],
   });
