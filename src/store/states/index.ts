@@ -3,6 +3,10 @@ export interface NavigationState {
     isCollapsed: boolean;
 }
 
+export interface UserState {
+    user: any;
+}
+
 export const navigationInitialState: NavigationState = {
     currentIndex: 0,
     isCollapsed: false

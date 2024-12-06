@@ -52,7 +52,8 @@ export default function SignUp() {
     };
   }, [email, password, fullname, phone, country]);
 
-  const { mutateAsync, isError, isPending, error } = trpc.createUser.useMutation();
+  const { mutateAsync, isError, isPending, error } =
+    trpc.createUser.useMutation();
 
   useEffect(() => {
     if (isError) {
@@ -67,7 +68,10 @@ export default function SignUp() {
         showSnackbar(formattedErrors, "error");
         return;
       }
-      showSnackbar(formattedErrors ?? error?.message?.replaceAll("\n", " "), "error");
+      showSnackbar(
+        formattedErrors ?? error?.message?.replaceAll("\n", " "),
+        "error"
+      );
     }
   }, [isError]);
 

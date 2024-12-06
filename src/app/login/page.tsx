@@ -24,16 +24,20 @@ import useCustomRouter from "@/router";
 import Routes from "@/router/paths";
 import EmailIcon from "@mui/icons-material/Email";
 import PasswordIcon from "@mui/icons-material/Lock";
-import { trpc } from "../trpc/client";
+import { trpc } from "@trpc-client/client";
 import { useSnackbar } from "@/components/snackbar/Provider";
 import LocalStorageService from "@local-storage";
+import { useAppState } from "@/store/store";
+import { USER_ACTIONS } from "@/store/actions";
 
 export default function Login() {
   const { navigateTo } = useCustomRouter();
-  const {showSnackbar} = useSnackbar();
+  const { showSnackbar } = useSnackbar();
+  const dispatch = useAppState().dispatch;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { mutateAsync, isError, error, data, isSuccess } = trpc.session.useMutation();
+  const { mutateAsync, isError, error, data, isSuccess } =
+    trpc.session.useMutation();
 
   useEffect(() => {
     if (isError) {
@@ -46,16 +50,21 @@ export default function Login() {
       const token = data?.token;
       LocalStorageService.setItem("token", token);
       showSnackbar("Login Successful", "success");
+      dispatch({
+        type: USER_ACTIONS.SET_USER,
+        payload: data?.user,
+      })
+      navigateTo(Routes.DASHBOARD);
     }
   }, [isSuccess, data, showSnackbar]);
 
-  const handleLogin = async(event: { preventDefault: () => void; }) => {
+  const handleLogin = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     try {
       const payload = {
         email,
         password,
-      }
+      };
       await mutateAsync(payload);
     } catch (error: any) {
       console.log(error);

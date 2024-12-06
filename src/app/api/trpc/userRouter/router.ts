@@ -1,11 +1,11 @@
-import { publicProcedure, router } from "@server/trpc";
+import { protectedProcedure, publicProcedure, router } from "@server/trpc";
 import { UserSchema, UserSearchSchema } from "./schema";
 import { createUser } from "./mutation-handler";
 import { z } from "zod";
 import { getUserById, getUsersByFields } from "./queries-handler";
 
 const userRouter = router({
-    getUserById: publicProcedure
+    getUserById: protectedProcedure
     .input(z.string())
     .query(async({ input }) => await getUserById(input)),
     getUsersByFields: publicProcedure

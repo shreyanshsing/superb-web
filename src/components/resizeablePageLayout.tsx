@@ -4,11 +4,11 @@ import { resizeContainerSxProps } from "./styles";
 
 const ResizeablePageLayout = ({ children }: { children: React.ReactNode }) => {
   const {
-    state: { navigation },
+    state,
   } = useAppState();
 
-  const width = navigation.isCollapsed ? "95%" : "82%";
-  const marginLeft = navigation.isCollapsed ? "5%" : "18%";
+  const width = state.navigation.isCollapsed ? "95%" : "82%";
+  const marginLeft = state.navigation.isCollapsed ? "5%" : "18%";
 
   return (
     <Container

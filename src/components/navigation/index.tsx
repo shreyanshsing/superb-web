@@ -30,7 +30,7 @@ import {
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import { useAppState } from "@store/store";
-import { NAVIGATION_ACTION_TYPES, NAVIGATION_ACTIONS } from "@store/actions";
+import { ACTION_TYPES, NAVIGATION_ACTIONS } from "@store/actions";
 import useCustomRouter from "@/router";
 import Paths from "@/router/paths";
 
@@ -89,18 +89,19 @@ export default function BottomNavigation() {
 
   const setCurrentStep = (index: number) => {
     const newPath = navOptions()[index].route;
-    navigateTo(newPath);
+    const isProfile = newPath === Paths.PROFILE;
+    navigateTo(isProfile ? `${newPath}/${state.user.id}` : newPath);
     dispatch({
       type: NAVIGATION_ACTIONS.SET_CURRENT_INDEX,
       payload: index,
-    } as NAVIGATION_ACTION_TYPES);
+    } as ACTION_TYPES);
   };
 
   const setIsCollapsed = (isCollapsed: boolean) => {
     dispatch({
       type: NAVIGATION_ACTIONS.SET_IS_COLLAPSED,
       payload: isCollapsed,
-    } as NAVIGATION_ACTION_TYPES);
+    } as ACTION_TYPES);
   };
 
   const getListItemColor = (active: boolean) => {

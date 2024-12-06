@@ -15,7 +15,7 @@ const AppStateContext = createContext<AppStateContextProps | undefined>(undefine
 const usePersistentReducer = (key: string): [AppState, React.Dispatch<any>] => {
     const [state, dispatch] = useReducer(reducer, AppInitialState, (initial) => {
       const persisted = LocalStorageService.getItem(key);
-      return persisted ? persisted : initial;
+      return persisted ? JSON.parse(persisted) : initial;
     });
   
     useEffect(() => {

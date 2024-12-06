@@ -1,4 +1,4 @@
-import { APP_ACTION_TYPES, NAVIGATION_ACTIONS } from "../actions";
+import { APP_ACTION_TYPES, NAVIGATION_ACTIONS, USER_ACTIONS } from "../actions";
 import { AppInitialState } from "../states";
 
 const rootReducer = (state = AppInitialState, action: APP_ACTION_TYPES) => {
@@ -18,6 +18,11 @@ const rootReducer = (state = AppInitialState, action: APP_ACTION_TYPES) => {
                     ...state.navigation,
                     isCollapsed: action.payload
                 }
+            }
+        case USER_ACTIONS.SET_USER:
+            return {
+                ...state,
+                user: action.payload
             }
         default:
             return state;
