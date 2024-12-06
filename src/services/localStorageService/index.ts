@@ -1,4 +1,6 @@
-class LocalStorageService {
+'use client';
+
+export default class LocalStorageService {
     static setItem(key: string, value: any) {
         localStorage.setItem(key, JSON.stringify(value));
     }

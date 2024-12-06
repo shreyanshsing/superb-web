@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useReducer, ReactNode, useEffect } from 'react';
 import { AppInitialState, AppState } from './states';
 import reducer from './reducers';
+import LocalStorageService from '@local-storage';
 
 interface AppStateContextProps {
     state: AppState;
@@ -13,12 +14,12 @@ const AppStateContext = createContext<AppStateContextProps | undefined>(undefine
 
 const usePersistentReducer = (key: string): [AppState, React.Dispatch<any>] => {
     const [state, dispatch] = useReducer(reducer, AppInitialState, (initial) => {
-      const persisted = localStorage.getItem(key);
-      return persisted ? JSON.parse(persisted) : initial;
+      const persisted = LocalStorageService.getItem(key);
+      return persisted ? persisted : initial;
     });
   
     useEffect(() => {
-      localStorage.setItem(key, JSON.stringify(state));
+      LocalStorageService.setItem(key, JSON.stringify(state));
     }, [key, state]);
   
     return [state as AppState, dispatch as React.Dispatch<any>];

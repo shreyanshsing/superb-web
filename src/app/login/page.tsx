@@ -19,25 +19,48 @@ import {
   fontColor,
 } from "@/components/navigation/stylesProps";
 import RegisterFormLayout from "@/components/registerFormLayout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useCustomRouter from "@/router";
 import Routes from "@/router/paths";
 import EmailIcon from "@mui/icons-material/Email";
 import PasswordIcon from "@mui/icons-material/Lock";
-import { trpc } from "@trpc/client";
+import { trpc } from "../trpc/client";
+import { useSnackbar } from "@/components/snackbar/Provider";
+import LocalStorageService from "@local-storage";
 
 export default function Login() {
   const { navigateTo } = useCustomRouter();
+  const {showSnackbar} = useSnackbar();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { mutateAsync, isError, error, data, isSuccess } = trpc.session.useMutation();
 
-  const { data } = trpc.greetings.useQuery();
-  console.log("User:", data);
+  useEffect(() => {
+    if (isError) {
+      showSnackbar(error?.message ?? "Error logging in", "error");
+    }
+  }, [isError, error, showSnackbar]);
 
-  const handleLogin = (event: { preventDefault: () => void; }) => {
+  useEffect(() => {
+    if (isSuccess) {
+      const token = data?.token;
+      LocalStorageService.setItem("token", token);
+      showSnackbar("Login Successful", "success");
+    }
+  }, [isSuccess, data, showSnackbar]);
+
+  const handleLogin = async(event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    console.log("Email:", email);
-    console.log("Password", password);
+    try {
+      const payload = {
+        email,
+        password,
+      }
+      await mutateAsync(payload);
+    } catch (error: any) {
+      console.log(error);
+      showSnackbar(error?.message ?? "Error logging in", "error");
+    }
   };
 
   const handleSignup = () => {

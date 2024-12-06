@@ -38,6 +38,7 @@
       "@server/*": ["./src/server/*"],
       "@trpc-client/*": ["./src/app/trpc/*"],
       "@api/*": ["./src/app/api/*"],
+      "@local-storage": ["./src/services/localStorageService/index.ts"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

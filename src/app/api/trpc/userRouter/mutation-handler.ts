@@ -3,14 +3,24 @@ import { UserSchema } from "./schema";
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
 import { PrismaClientValidationError } from "@prisma/client/runtime/library";
+import { hashPassword } from "../auth/utils";
+import { getUsersByFields } from "./queries-handler";
 
 export const createUser = async(input: z.infer<typeof UserSchema>) => {
     try {
+        const user = await getUsersByFields({email: input.email});
+        if (user.length > 0) {
+            throw new TRPCError({
+                code: "BAD_REQUEST",
+                message: "User already exists",
+            });
+        }
+        const hashedPassword = await hashPassword(input.password);
         const result = await prismaClient.user.create({
             data: {
                 name: input.name,
                 email: input.email,
-                password: input.password,
+                password: hashedPassword,
                 phone: input.phone,
                 country: input.country,
             },

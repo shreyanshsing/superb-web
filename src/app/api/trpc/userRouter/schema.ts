@@ -7,3 +7,8 @@ export const UserSchema = z.object({
     phone: z.string().optional().default(""),
     country: z.string().optional().default(""),
 });
+
+export const UserSearchSchema = z.object({
+    email: z.string().email().optional(),
+    name: z.string().optional()
+});
