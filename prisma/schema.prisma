@@ -18,4 +18,10 @@ model User {
   updatedAt DateTime @default(now())
   phone     String?  @default("")
   country   String?  @default("")
+  wallpaper String?  @default("")
+  avatar    String?  @default("")
+  followers String[] @default([])
+  following String[] @default([])
+  bio       String?  @default("")
+  headline  String?  @default("")
 }

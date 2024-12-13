@@ -40,6 +40,12 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Sevillana&display=swap"
           rel="stylesheet"
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Agu+Display&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body style={{ margin: 0 }}>
         <Provider>

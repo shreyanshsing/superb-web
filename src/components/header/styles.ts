@@ -2,14 +2,18 @@ import { type SxProps } from "@mui/material/styles";
 import styled from "@emotion/styled";
 import { fontActiveColor, fontColor } from "@/theme/color-palette";
 
-export const headerConatinerSxProps: SxProps = {
+export const headerConatinerSxProps = (backgroundColor?: string): SxProps => ({
     margin: '0',
-    height: 'fit-content',
+    height: '500',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-};
+    position: 'fixed',
+    width: '100%',
+    backgroundColor: backgroundColor || 'transparent',
+    zIndex: 100,
+});
 
 export const listSxProps: SxProps = {
     display: 'flex',
@@ -22,12 +26,12 @@ export const listSxProps: SxProps = {
 
 export const headingSxProps: SxProps = {
     fontFamily: "'Sevillana', cursive",
-  color: fontActiveColor,
-  fontWeight: 700,
-  fontStyle: "italic",
-  letterSpacing: 2,
-  fontSize: "3rem",
-  margin: "2rem",
+    color: fontActiveColor,
+    fontWeight: 700,
+    fontStyle: "italic",
+    letterSpacing: 2,
+    fontSize: "3rem",
+    margin: "2rem",
 }
 
 export const NavLinks = styled.a`

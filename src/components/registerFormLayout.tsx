@@ -1,6 +1,6 @@
 import { Container } from "@mui/material";
 import { blurContainerSxProps, registerContainerSxProps } from "./styles";
-import HorizontalHeader from "./header/horizontalHeader";
+import HorizontalHeader from "./header/horizontal-header";
 
 interface IProps {
   formElement: JSX.Element;

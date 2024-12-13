@@ -16,7 +16,11 @@ const navMenus = [
   },
 ];
 
-export default function HorizontalHeader() {
+interface IProps {
+  backgroundColor?: string;
+}
+
+export default function HorizontalHeader({ backgroundColor }: IProps) {
   const renderNavMenus = () => {
     return navMenus.map((menu, index) => {
       return (
@@ -31,7 +35,7 @@ export default function HorizontalHeader() {
   };
 
   return (
-      <Container sx={headerConatinerSxProps}>
+      <Container sx={headerConatinerSxProps(backgroundColor)}>
         <Typography variant={"h4"} sx={headingSxProps}>
           {"Superb"}
         </Typography>

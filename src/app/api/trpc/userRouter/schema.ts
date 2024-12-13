@@ -12,3 +12,18 @@ export const UserSearchSchema = z.object({
     email: z.string().email().optional(),
     name: z.string().optional()
 });
+
+export const UserUpdateSchema = z.object({
+    id: z.string(),
+    name: z.string().optional(),
+    email: z.string().email().optional(),
+    phone: z.string().optional(),
+    country: z.string().optional(),
+    wallpaper: z.string().optional(),
+    avatar: z.string().optional(),
+    bio: z.string().optional(),
+    headline: z.string().optional(),
+    followers: z.array(z.string()).optional(),
+    following: z.array(z.string()).optional(),
+    password: z.string().min(6).optional()
+});
