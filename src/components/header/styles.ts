@@ -13,6 +13,9 @@ export const headerConatinerSxProps = (backgroundColor?: string): SxProps => ({
     width: '100%',
     backgroundColor: backgroundColor || 'transparent',
     zIndex: 100,
+    backdropFilter: 'blur(15px)',
+    maring: 0,
+    top: 0,
 });
 
 export const listSxProps: SxProps = {

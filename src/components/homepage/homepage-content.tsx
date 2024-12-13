@@ -1,18 +1,31 @@
 import { Box, Container, Typography } from "@mui/material";
 import { contentContainerSxProps, contentSxProps } from "./styles";
 import { EditProfileButton, ShareButton } from "../profile/styled";
-import {useLottie}  from "lottie-react";
+import { useLottie } from "lottie-react";
 import groovyWalkAnimation from "../../../public/assets/homepage-animation.json";
+import useCustomRouter from "@/router";
+import Path from "@router/paths";
 
 const content = ["CLUB", "COMMUNITY", "PEOPLE"];
 
 const HomepageContent = () => {
   const options = {
     animationData: groovyWalkAnimation,
-    loop: true
+    loop: true,
   };
 
   const { View } = useLottie(options);
+
+  const { navigateTo } = useCustomRouter();
+
+  const routeToLogin = () => {
+    navigateTo(Path.LOGIN);
+  };
+
+  const routeToSignup = () => {
+    navigateTo(Path.SIGNUP);
+  };
+
   return (
     <Container sx={contentContainerSxProps}>
       {content.map((item, index) => {
@@ -30,7 +43,7 @@ const HomepageContent = () => {
           sx={{ ...contentSxProps, fontSize: "1rem", fontWeight: 400 }}
         >
           {
-            'Ready to start your journey or pick up where you left off? \n Join now or sign in to unlock endless possibilities!'
+            "Ready to start your journey or pick up where you left off? \n Join now or sign in to unlock endless possibilities!"
           }
         </Typography>
         <Box
@@ -42,15 +55,20 @@ const HomepageContent = () => {
             margin: "2rem",
           }}
         >
-          <EditProfileButton size={"large"} fullWidth>
+          <EditProfileButton size={"large"} onClick={routeToLogin} fullWidth>
             Sign in
           </EditProfileButton>
-          <ShareButton variant={"contained"} color={"primary"} fullWidth>
+          <ShareButton
+            variant={"contained"}
+            onClick={routeToSignup}
+            color={"primary"}
+            fullWidth
+          >
             Sign up
           </ShareButton>
         </Box>
       </Box>
-      <Box sx={{position: "absolute", bottom: "0", width: "30%", right: "0"}}>
+      <Box sx={{ position: "absolute", bottom: "0", width: "30%", right: "0" }}>
         {View}
       </Box>
     </Container>

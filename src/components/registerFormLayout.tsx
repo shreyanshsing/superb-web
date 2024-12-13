@@ -14,7 +14,9 @@ export default function RegisterFormLayout({
     <Container maxWidth={false} sx={registerContainerSxProps}>
       <Container maxWidth={false} sx={blurContainerSxProps}>
         <HorizontalHeader />
-        {formElement}
+        <Container sx={{marginTop: "15%"}}>
+          {formElement}
+        </Container>
       </Container>
     </Container>
   );
