@@ -2,13 +2,28 @@
 
 export default class LocalStorageService {
     static setItem(key: string, value: any) {
-        localStorage.setItem(key, JSON.stringify(value));
+        if (typeof window !== 'undefined') {
+            localStorage.setItem(key, JSON.stringify(value));
+        } else {
+            console.warn('localStorage is not available');
+        }
     }
+
     static getItem(key: string) {
-        const value = localStorage.getItem(key);
-        return value ? JSON.parse(value) : null;
+        if (typeof window !== 'undefined') {
+            const value = localStorage.getItem(key);
+            return value ? JSON.parse(value) : null;
+        } else {
+            console.warn('localStorage is not available');
+            return null;
+        }
     }
+
     static removeItem(key: string) {
-        localStorage.removeItem(key);
+        if (typeof window !== 'undefined') {
+            localStorage.removeItem(key);
+        } else {
+            console.warn('localStorage is not available');
+        }
     }
 }
