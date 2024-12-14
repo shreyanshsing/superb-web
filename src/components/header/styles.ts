@@ -9,7 +9,7 @@ export const headerConatinerSxProps = (backgroundColor?: string): SxProps => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    position: 'fixed',
+    position: 'sticky',
     width: '100%',
     backgroundColor: backgroundColor || 'transparent',
     zIndex: 100,
@@ -33,8 +33,8 @@ export const headingSxProps: SxProps = {
     fontWeight: 700,
     fontStyle: "italic",
     letterSpacing: 2,
-    fontSize: "3rem",
-    margin: "2rem",
+    fontSize: "4rem",
+    margin: "1.5rem",
 }
 
 export const NavLinks = styled.a`

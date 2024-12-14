@@ -6,17 +6,12 @@ interface IProps {
   formElement: JSX.Element;
 }
 
-export default function RegisterFormLayout({
-  formElement,
-}: IProps) {
-
+export default function RegisterFormLayout({ formElement }: IProps) {
   return (
     <Container maxWidth={false} sx={registerContainerSxProps}>
       <Container maxWidth={false} sx={blurContainerSxProps}>
         <HorizontalHeader />
-        <Container sx={{marginTop: "15%"}}>
-          {formElement}
-        </Container>
+        {formElement}
       </Container>
     </Container>
   );

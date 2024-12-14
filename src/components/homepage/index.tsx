@@ -3,12 +3,11 @@ import HorizontalHeader from "../header/horizontal-header";
 import { homepageContainerSxProps } from "./styles";
 import HomepageContent from "./homepage-content";
 import Page2Content from "./page-2-content";
-import { surfaceSecondary } from "@/theme/color-palette";
 
 const Homepage = () => {
   return (
-    <Container id={'homepage-container'} maxWidth={false} sx={homepageContainerSxProps}>
-      <HorizontalHeader backgroundColor={surfaceSecondary} />
+    <Container maxWidth={false} sx={homepageContainerSxProps}>
+      <HorizontalHeader />
       <HomepageContent />
       <Page2Content />
     </Container>

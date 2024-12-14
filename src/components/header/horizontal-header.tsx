@@ -35,7 +35,7 @@ export default function HorizontalHeader({ backgroundColor }: IProps) {
   };
 
   return (
-      <Container sx={headerConatinerSxProps(backgroundColor)}>
+      <Container maxWidth={false} sx={headerConatinerSxProps(backgroundColor)}>
         <Typography variant={"h4"} sx={headingSxProps}>
           {"Superb"}
         </Typography>
