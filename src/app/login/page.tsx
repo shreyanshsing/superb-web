@@ -156,7 +156,7 @@ export default function Login() {
     return (
       <Box margin={"1rem auto"}>
         <Typography variant={"h5"} sx={{ color: fontColor, fontWeight: 300 }}>
-          Don't have an account?
+          Don&apos;t have an account?
           <Button
             variant={"text"}
             onClick={handleSignup}
