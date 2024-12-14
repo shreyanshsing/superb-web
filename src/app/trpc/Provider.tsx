@@ -7,7 +7,7 @@ import { trpc } from "@trpc-client/client";
 import SuperJSON from "superjson";
 import LocalStorageService from "@local-storage";
 
-const url = "http://localhost:3000/api/trpc";
+const url = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3000/api/trpc";
 
 export const Provider = ({ children }: { children: ReactNode }) => {
   const [queryClient] = useState(
