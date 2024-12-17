@@ -33,6 +33,8 @@ import { useAppState } from "@store/store";
 import { ACTION_TYPES, NAVIGATION_ACTIONS } from "@store/actions";
 import useCustomRouter from "@/router";
 import Paths from "@/router/paths";
+import LogoutIcon from '@mui/icons-material/Logout';
+import LocalStorageService from "@/services/localStorageService";
 
 interface INavOption {
   icon: React.ReactNode;
@@ -77,6 +79,11 @@ const navOptions = (): INavOption[] => {
       text: "Settings",
       route: Paths.SETTINGS,
     },
+    {
+      icon: <LogoutIcon sx={{ fontSize: 30 }} />,
+      text: "Logout",
+      route: "logout",
+    }
   ];
   return data;
 };
@@ -90,6 +97,12 @@ export default function BottomNavigation() {
   const setCurrentStep = (index: number) => {
     const newPath = navOptions()[index].route;
     const isProfile = newPath === Paths.PROFILE;
+    const isLogout = newPath === "logout";
+    if (isLogout) {
+      LocalStorageService.removeItem("token");
+      navigateTo(Paths.LOGIN);
+      return;
+    }
     navigateTo(isProfile ? `${newPath}/${state.user.id}` : newPath);
     dispatch({
       type: NAVIGATION_ACTIONS.SET_CURRENT_INDEX,

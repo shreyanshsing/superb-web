@@ -24,6 +24,14 @@ const rootReducer = (state = AppInitialState, action: APP_ACTION_TYPES) => {
                 ...state,
                 user: action.payload
             }
+        case USER_ACTIONS.UPDATE_USER:
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    ...action.payload
+                }
+            }
         default:
             return state;
     }

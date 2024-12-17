@@ -49,19 +49,39 @@ export const avatarSxProps: SxProps = {
 }
 
 export const numberSxProps: SxProps = {
-    color: fontHintColor, 
-    fontWeight: 500, 
+    color: fontHintColor,
+    fontWeight: 500,
     marginRight: '0.5rem'
 }
 
 export const lastRowSxProps: SxProps = {
-    display: 'flex', 
-    flexDirection: 'row', 
-    justifyContent: 'space-between', 
-    alignItems: 'center', 
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: '2rem 0rem',
     paddingTop: '0rem',
     margin: "0rem 2rem",
+}
+
+export const editModalBoxSxProps: SxProps = {
+    width: '40%',
+    margin: 'auto',
+    backgroundColor: surfaceSecondary,
+    borderRadius: '20px',
+    padding: '2rem',
+    boxShadow: '10px 10px 20px rgba(0, 0, 0, 0.3)',
+    position: 'absolute',
+    top: '40%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+}
+
+export const flexRowSxProps: SxProps = {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
 }
 
 export const EditProfileButton = styled(Button)`
@@ -83,3 +103,28 @@ export const ShareButton = styled(Button)`
     font-weight: 500;
     text-transform: capitalize;
 `;
+
+export const avatarContainerSxProps: SxProps = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '1rem',
+    height: '100%',
+    position: 'relative',
+}
+
+export const avatarComponentSxProps: SxProps = {
+    width: "100%",
+    height: "100%",
+}
+
+export const avatarButtonBoxSxProps: SxProps = {
+    position: 'absolute',
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    width: '90%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    bottom: '5%',
+}

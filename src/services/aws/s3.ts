@@ -10,7 +10,7 @@ const s3 = new S3Client({
     logger: console
 });
 
-const bucketName = process.env.AWS_BUCKET_NAME || '';
+const bucketName = process.env.NEXT_PUBLIC_AWS_BUCKET_NAME || '';
 
 interface FileSchema {
     fileName: string;
@@ -32,7 +32,7 @@ export const generateUploadFileUrl = async (file: FileSchema): Promise<any> => {
     try {
         const command = new PutObjectCommand(params);
         const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
-        return url; // Return the presigned URL to the client
+        return {url, key: path}; // Return the presigned URL to the client
     } catch (error) {
         console.error(error);
         return error;

@@ -4,7 +4,8 @@ export enum NAVIGATION_ACTIONS {
 }
 
 export enum USER_ACTIONS {
-    SET_USER = 'SET_USER'
+    SET_USER = 'SET_USER',
+    UPDATE_USER = 'UPDATE_USER',
 }
 
 export type ACTION_TYPES = {

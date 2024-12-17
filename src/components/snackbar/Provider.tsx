@@ -13,7 +13,7 @@ const SnackbarContext = createContext<SnackbarContextProps | undefined>(
 );
 
 const SnackbarProvider = ({ children }: { children: ReactNode }) => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [message, setMessage] = useState<string | null>("");
   const [severity, setSeverity] = useState<
     "success" | "error" | "warning" | "info"
@@ -34,10 +34,10 @@ const SnackbarProvider = ({ children }: { children: ReactNode }) => {
   return (
     <SnackbarContext.Provider value={{ showSnackbar, closeSnackbar }}>
       {children}
-      <Snackbar open={open} onClose={() => setOpen(false)}>
+      <Snackbar open={open} onClose={closeSnackbar} autoHideDuration={3000}>
         <Alert
           severity={severity}
-          onClose={() => setOpen(false)}
+          onClose={closeSnackbar}
           variant={"filled"}
           sx={{ width: "100%" }}
         >

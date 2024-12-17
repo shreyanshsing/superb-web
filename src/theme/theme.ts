@@ -26,10 +26,21 @@ const theme = createTheme({
                     marginTop: '0.5rem',
                     fontSize: '1.2rem',
                 },
+                notchedOutline: {
+                    borderColor: `${fontActiveColor} !important`,
+                    color: `${fontActiveColor} !important`,
+                },
             },
             defaultProps: {
                 fullWidth: true,
             }
+        },
+        MuiInputLabel: {
+            styleOverrides: {
+                root: {
+                    color: `${fontActiveColor} !important`,
+                },
+            },
         },
         MuiTypography: {
             styleOverrides: {
