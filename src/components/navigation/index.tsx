@@ -45,42 +45,42 @@ interface INavOption {
 const navOptions = (): INavOption[] => {
   const data = [
     {
-      icon: <HomeIcon sx={{ fontSize: 30 }} />,
+      icon: <HomeIcon sx={{ fontSize: 25 }} />,
       text: "Home",
       route: Paths.DASHBOARD,
     },
     {
-      icon: <ExploreIcon sx={{ fontSize: 30 }} />,
+      icon: <ExploreIcon sx={{ fontSize: 25 }} />,
       text: "Explore",
       route: Paths.EXPLORE,
     },
     {
-      icon: <SendIcon sx={{ fontSize: 30 }} />,
+      icon: <SendIcon sx={{ fontSize: 25 }} />,
       text: "Messages",
       route: Paths.MESSAGES,
     },
     {
-      icon: <NotificationsIcon sx={{ fontSize: 30 }} />,
+      icon: <NotificationsIcon sx={{ fontSize: 25 }} />,
       text: "Notifications",
       route: Paths.NOTIFICATIONS,
     },
     {
-      icon: <AddCircleOutlineIcon sx={{ fontSize: 30 }} />,
+      icon: <AddCircleOutlineIcon sx={{ fontSize: 25 }} />,
       text: "Create",
       route: Paths.CREATE,
     },
     {
-      icon: <ProfileIcon sx={{ fontSize: 30 }} />,
+      icon: <ProfileIcon sx={{ fontSize: 25 }} />,
       text: "Profile",
       route: Paths.PROFILE,
     },
     {
-      icon: <SettingsIcon sx={{ fontSize: 30 }} />,
+      icon: <SettingsIcon sx={{ fontSize: 25 }} />,
       text: "Settings",
       route: Paths.SETTINGS,
     },
     {
-      icon: <LogoutIcon sx={{ fontSize: 30 }} />,
+      icon: <LogoutIcon sx={{ fontSize: 25 }} />,
       text: "Logout",
       route: "logout",
     }
@@ -172,7 +172,7 @@ export default function BottomNavigation() {
                 primaryTypographyProps={{
                   sx: {
                     color: getListItemColor(index === currenStep),
-                    fontSize: 20,
+                    fontSize: 16,
                   },
                 }}
               />

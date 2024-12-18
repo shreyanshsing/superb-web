@@ -8,8 +8,16 @@ export enum USER_ACTIONS {
     UPDATE_USER = 'UPDATE_USER',
 }
 
+export enum LOCAL_POST_ACTIONS {
+    SET_TITLE = 'SET_TITLE',
+    SET_CONTENT = 'SET_CONTENT',
+    SET_MEDIA = 'SET_MEDIA',
+    SET_MENTIONS = 'SET_MENTIONS',
+    SET_TAGS = 'SET_TAGS',
+}
+
 export type ACTION_TYPES = {
-    type: NAVIGATION_ACTIONS | USER_ACTIONS,
+    type: NAVIGATION_ACTIONS | USER_ACTIONS | LOCAL_POST_ACTIONS,
     payload: any
 }
 

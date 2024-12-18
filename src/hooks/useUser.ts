@@ -11,22 +11,30 @@ interface IProps {
 }
 
 const useUser = ({ id }: IProps) => {
-    const {showSnackbar} = useSnackbar();
+    const { showSnackbar } = useSnackbar();
     const { dispatch, state } = useAppState();
     const { user } = state;
-    const { 
-        data: userData, 
-        isFetching: isLoadingUser, 
-        error: userFetchError, 
-        isError: isFailedToFetchUser 
+    const {
+        data: userData,
+        isFetching: isLoadingUser,
+        error: userFetchError,
+        isError: isFailedToFetchUser
     } = trpc.getUserById.useQuery(id, { enabled: !!id && !user });
-    const { 
-        mutateAsync, 
+
+    const {
+        mutateAsync,
         data: updatedUserData,
-        isError: isFailedToUpdateuser, 
-        isPending: isLoadingUpdate, 
-        error: failedToUpdateUser 
+        isError: isFailedToUpdateuser,
+        isPending: isLoadingUpdate,
+        error: failedToUpdateUser
     } = trpc.updateUser.useMutation();
+
+    const {
+        data: userStats,
+        isFetching: isLoadingUserStats,
+        isError: isFailedToFetchUserStats,
+        error: userStatsError
+    } = trpc.getUserStats.useQuery(id, { enabled: !!id });
 
     useEffect(() => {
         if (userData) {
@@ -62,7 +70,11 @@ const useUser = ({ id }: IProps) => {
         isFailedToUpdateuser,
         isLoadingUpdate,
         failedToUpdateUser,
-        updateUser
+        updateUser,
+        userStats,
+        isLoadingUserStats,
+        isFailedToFetchUserStats,
+        userStatsError
     };
 
 }

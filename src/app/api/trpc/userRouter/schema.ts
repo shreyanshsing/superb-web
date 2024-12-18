@@ -27,3 +27,11 @@ export const UserUpdateSchema = z.object({
     following: z.array(z.string()).optional(),
     password: z.string().min(6).optional()
 });
+
+export const UserStatsSchema = z.object({
+    followers: z.number().optional(),
+    following: z.number().optional(),
+    posts: z.number().optional(),
+    tags: z.number().optional(),
+    saved: z.number().optional(),
+});

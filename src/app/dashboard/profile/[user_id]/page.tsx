@@ -1,29 +1,31 @@
-'use client';
+"use client";
 
-import { trpc } from "@trpc-client/client";
 import ConnectionsList from "@/components/profile/connectionsList";
 import InfoContainer from "@/components/profile/infoContainer";
 import PostsSection from "@/components/profile/postsTabs";
 import { Grid2 } from "@mui/material";
 import useCustomRouter from "@/router/index";
+import useUser from "@/hooks/useUser";
 
 export default function Profile() {
   const { getParams } = useCustomRouter();
   const userId = getParams("user_id");
 
-  const { data, isError, error, isFetching } = trpc.getUserById.useQuery(`${userId}`);
+  const { getUserDetails, isFailedToFetchUser, isLoadingUser, userFetchError } =
+    useUser({ id: userId as string });
 
-  if (isError) {
-    console.error(error);
+  if (isFailedToFetchUser) {
+    console.error("Error fetching user:", userFetchError);
   }
 
-  if (isFetching) {
+  if (isLoadingUser) {
     return <div>Loading...</div>;
   }
 
-  if (!data) {
+  if (!getUserDetails) {
     return <div>User not found</div>;
   }
+
   return (
     <Grid2 container spacing={2}>
       <Grid2

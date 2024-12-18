@@ -26,14 +26,14 @@ interface IProps {
 const InfoContainer = ({ isOwnProfile }: IProps) => {
   const { getParams } = useCustomRouter();
   const userId = getParams("user_id");
-  const { getUserDetails } = useUser({ id: userId as string });
+  const { getUserDetails, userStats } = useUser({ id: userId as string });
   const [openEditProfile, setOpenEditProfile] = useState(false);
 
   const avatarComponent = () => {
     return (
       <Container maxWidth={false} sx={avatarSxProps}>
         <Image
-          src={getUserDetails?.avatar ?? DefaultUserAvatar}
+          src={getUserDetails?.avatar || DefaultUserAvatar}
           style={{ borderRadius: "50%", objectFit: "cover" }}
           width={130}
           height={130}
@@ -48,15 +48,23 @@ const InfoContainer = ({ isOwnProfile }: IProps) => {
       <Box sx={{ margin: "1rem 2rem" }}>
         <Typography
           sx={{ color: fontActiveColor, fontWeight: 500 }}
-          variant="h4"
+          variant="h5"
         >
           {getUserDetails?.name}
         </Typography>
         <Typography>{getUserDetails?.headline}</Typography>
         <Typography>{getUserDetails?.country}</Typography>
         <Box>
-          <Typography sx={{color: fontActiveColor, fontWeight: 'bold'}}>{'About Me'}</Typography>
-          <Typography variant={'body1'} component={'q'} sx={{fontStyle: "italic"}}>{getUserDetails?.bio}</Typography>
+          <Typography sx={{ color: fontActiveColor, fontWeight: "bold" }}>
+            {"About Me"}
+          </Typography>
+          <Typography
+            variant={"body1"}
+            component={"q"}
+            sx={{ fontStyle: "italic" }}
+          >
+            {getUserDetails?.bio}
+          </Typography>
         </Box>
       </Box>
     );
@@ -65,16 +73,16 @@ const InfoContainer = ({ isOwnProfile }: IProps) => {
   const showNumbers = () => {
     return (
       <Box>
-        <Typography variant={"h5"} component={"span"} sx={numberSxProps}>
-          6474
+        <Typography variant={"h6"} component={"span"} sx={numberSxProps}>
+          {userStats?.followers}
         </Typography>
         <Typography component={"span"} sx={{ marginRight: "2rem" }}>
-          followers
+          {userStats?.followers === 1 ? "follower" : "followers"}
         </Typography>
-        <Typography variant={"h5"} component={"span"} sx={numberSxProps}>
-          500
+        <Typography variant={"h6"} component={"span"} sx={numberSxProps}>
+          {userStats?.following}
         </Typography>
-        <Typography component={"span"}>following</Typography>
+        <Typography component={"span"}>{"following"}</Typography>
       </Box>
     );
   };

@@ -1,4 +1,4 @@
-import { APP_ACTION_TYPES, NAVIGATION_ACTIONS, USER_ACTIONS } from "../actions";
+import { APP_ACTION_TYPES, LOCAL_POST_ACTIONS, NAVIGATION_ACTIONS, USER_ACTIONS } from "../actions";
 import { AppInitialState } from "../states";
 
 const rootReducer = (state = AppInitialState, action: APP_ACTION_TYPES) => {
@@ -30,6 +30,46 @@ const rootReducer = (state = AppInitialState, action: APP_ACTION_TYPES) => {
                 user: {
                     ...state.user,
                     ...action.payload
+                }
+            }
+        case LOCAL_POST_ACTIONS.SET_TITLE:
+            return {
+                ...state,
+                localPost: {
+                    ...state.localPost,
+                    title: action.payload
+                }
+            }
+        case LOCAL_POST_ACTIONS.SET_CONTENT:
+            return {
+                ...state,
+                localPost: {
+                    ...state.localPost,
+                    content: action.payload
+                }
+            }
+        case LOCAL_POST_ACTIONS.SET_MEDIA:
+            return {
+                ...state,
+                localPost: {
+                    ...state.localPost,
+                    media: action.payload
+                }
+            }
+        case LOCAL_POST_ACTIONS.SET_MENTIONS:
+            return {
+                ...state,
+                localPost: {
+                    ...state.localPost,
+                    mentions: action.payload
+                }
+            }
+        case LOCAL_POST_ACTIONS.SET_TAGS:
+            return {
+                ...state,
+                localPost: {
+                    ...state.localPost,
+                    tags: action.payload
                 }
             }
         default:

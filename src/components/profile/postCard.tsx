@@ -27,7 +27,7 @@ export default function PostCard({ cardData }: IProps) {
     <Card sx={{position: "relative"}}>
       <CardMedia
         component={"img"}
-        height="194"
+        height="150"
         image={mediaUrl}
         alt={"card-image"}
       />
@@ -42,7 +42,7 @@ export default function PostCard({ cardData }: IProps) {
         />
       )}
       <CardContent>
-        <Typography>{description?.slice(0, 100) + "..."}</Typography>
+        <Typography>{description?.slice(0, 80) + "..."}</Typography>
         <Box
           sx={{
             display: "flex",
@@ -53,7 +53,7 @@ export default function PostCard({ cardData }: IProps) {
           <Box sx={{ display: "flex" }}>
             <Typography
               component={"span"}
-              variant={"h5"}
+              variant={"h6"}
               sx={{
                 display: "flex",
                 alignItems: "center",
@@ -65,7 +65,7 @@ export default function PostCard({ cardData }: IProps) {
             </Typography>
             <Typography
               component={"span"}
-              variant={"h5"}
+              variant={"h6"}
               sx={{
                 display: "flex",
                 alignItems: "center",

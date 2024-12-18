@@ -1,4 +1,4 @@
-import { fontActiveColor, fontHintColor, surfaceSecondary } from "@/theme/color-palette";
+import { fontActiveColor, surfaceSecondary } from "@/theme/color-palette";
 import styled from "@emotion/styled";
 import { Button, SxProps } from "@mui/material";
 
@@ -6,7 +6,7 @@ export const infoContainerSxProps: SxProps = {
     borderRadius: '20px',
     boxShadow: '10px 10px 20px rgba(0, 0, 0, 0.3)',
     width: '100%',
-    margin: '2rem 1rem',
+    margin: '1.5rem 1rem',
     padding: '0rem !important',
 }
 
@@ -16,7 +16,7 @@ export const wallpaperSxProps = (imageUrl: string): SxProps => {
         backgroundImage: `url(${imageUrl})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        height: '220px',
+        height: '180px',
         borderRadius: '20px 20px 0 0',
         display: 'flex',
         flexDirection: 'row',
@@ -42,14 +42,14 @@ export const avatarSxProps: SxProps = {
     height: 'fit-content',
     padding: '0rem !important',
     borderRadius: '50%',
-    marginTop: '-6%',
+    marginTop: '-8%',
     marginLeft: '1.5rem',
     zIndex: 1,
     border: `1px solid ${surfaceSecondary}`,
 }
 
 export const numberSxProps: SxProps = {
-    color: fontHintColor,
+    color: fontActiveColor,
     fontWeight: 500,
     marginRight: '0.5rem'
 }
@@ -69,10 +69,10 @@ export const editModalBoxSxProps: SxProps = {
     margin: 'auto',
     backgroundColor: surfaceSecondary,
     borderRadius: '20px',
-    padding: '2rem',
+    padding: '1rem 2rem',
     boxShadow: '10px 10px 20px rgba(0, 0, 0, 0.3)',
     position: 'absolute',
-    top: '40%',
+    top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
 }
@@ -86,7 +86,7 @@ export const flexRowSxProps: SxProps = {
 
 export const EditProfileButton = styled(Button)`
     border-radius: 20px;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     margin: 0rem;
     font-size: 1rem;
     font-weight: 500;
@@ -97,7 +97,7 @@ export const EditProfileButton = styled(Button)`
 
 export const ShareButton = styled(Button)`
     border-radius: 20px;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     margin-left: 1rem;
     font-size: 1rem;
     font-weight: 500;

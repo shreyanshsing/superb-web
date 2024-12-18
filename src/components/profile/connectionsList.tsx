@@ -27,7 +27,7 @@ import { mockUserData } from "@/utils/mockData";
 export const activeColors = {
   color: `${fontActiveColor} !important`,
   backgroundColor: tabActiveColor,
-  padding: "1.5rem",
+  padding: "0.5rem",
 };
 
 export const inactiveColors = {
@@ -57,27 +57,36 @@ const ConnectionsList = () => {
         <ListItemIcon>
           <Checkbox />
         </ListItemIcon>
-        <ListItemAvatar sx={{borderRadius: "50%"}}>
-          <Image src={user.avatar} style={{borderRadius: "50%"}} alt={"user-avatar"} width={65} height={65} />
+        <ListItemAvatar sx={{ borderRadius: "50%" }}>
+          <Image
+            src={user.avatar}
+            style={{ borderRadius: "50%" }}
+            alt={"user-avatar"}
+            width={65}
+            height={65}
+          />
         </ListItemAvatar>
-        <ListItemText primaryTypographyProps={{
+        <ListItemText
+          primaryTypographyProps={{
             fontSize: "1.2rem !important",
             color: fontActiveColor,
             fontWeight: 500,
-            marginLeft: '1rem',
-        }} primary={user.name} secondaryTypographyProps={{
-            marginLeft: '1rem',
-        }} secondary={user.title} />
+            marginLeft: "1rem",
+          }}
+          primary={user.name}
+          secondaryTypographyProps={{
+            marginLeft: "1rem",
+          }}
+          secondary={user.title}
+        />
       </ListItem>
     );
   };
 
   const showList = () => {
     return (
-      <List sx={{height: '70vh', overflowY: "auto", marginBottom: "2rem"}}>
-        {mockUserData?.map((user, index) =>
-          showListTile(user, index)
-        )}
+      <List sx={{ height: "70vh", overflowY: "auto", marginBottom: "2rem" }}>
+        {mockUserData?.map((user, index) => showListTile(user, index))}
       </List>
     );
   };
@@ -95,7 +104,10 @@ const ConnectionsList = () => {
       >
         <Tab
           label={"Following"}
-          sx={value === 0 ? activeColors : inactiveColors}
+          sx={{
+            ...(value === 0 ? activeColors : inactiveColors),
+            padding: "1rem",
+          }}
           value={0}
         />
         <Tab

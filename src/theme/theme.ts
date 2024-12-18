@@ -15,6 +15,13 @@ const theme = createTheme({
         },
     },
     components: {
+        MuiIconButton: {
+            styleOverrides: {
+                root: {
+                    color: fontActiveColor,
+                },
+            },
+        },
         MuiOutlinedInput: {
             styleOverrides: {
                 root: {
@@ -22,9 +29,9 @@ const theme = createTheme({
                     border: 'none !important',
                     backgroundColor: surfaceSecondary,
                     borderRadius: '20px',
-                    padding: '0.3rem 1rem',
+                    padding: '0rem 1rem',
                     marginTop: '0.5rem',
-                    fontSize: '1.2rem',
+                    fontSize: '1rem',
                 },
                 notchedOutline: {
                     borderColor: `${fontActiveColor} !important`,

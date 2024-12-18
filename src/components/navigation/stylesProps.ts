@@ -35,7 +35,7 @@ const titleSxProps: SxProps = {
 const listItemSxProps: SxProps = {
   display: "flex !important",
   alignItems: "center",
-  padding: "1rem",
+  padding: "0.8rem",
   color: fontColor,
   "&:hover": {
     background: "rgba(255, 255, 255, 0.1)",
@@ -46,7 +46,7 @@ const listItemSxProps: SxProps = {
 const listItemActiveSxProps: SxProps = {
   background: "rgba(255, 255, 255, 0.2)",
   color: fontActiveColor,
-  padding: "1rem",
+  padding: "0.8rem",
 };
 
 const toggleButtonSxProps: SxProps = {

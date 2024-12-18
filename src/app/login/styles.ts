@@ -17,7 +17,7 @@ export const fieldContainerSxProps: SxProps = {
 
 export const labelSxProps: SxProps = {
     color: fontColor,
-    fontSize: '1.3rem',
+    fontSize: '1rem',
     marginLeft: '0.5rem',
     fontWeight: 300,
 }

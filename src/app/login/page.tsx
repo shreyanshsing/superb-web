@@ -53,7 +53,7 @@ export default function Login() {
       dispatch({
         type: USER_ACTIONS.SET_USER,
         payload: data?.user,
-      })
+      });
       navigateTo(Routes.DASHBOARD);
     }
   }, [isSuccess, data, showSnackbar]);

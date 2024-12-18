@@ -47,7 +47,7 @@ const EditProfileModal = ({ user, isOpen, onClose }: IProps) => {
 
   const showEmailField = () => {
     return (
-      <Box>
+      <Box sx={{ marginTop: "1rem" }}>
         <FormLabel sx={labelSxProps}>
           Email <sup>*</sup>
         </FormLabel>
@@ -76,7 +76,7 @@ const EditProfileModal = ({ user, isOpen, onClose }: IProps) => {
         <FormLabel sx={labelSxProps}>About Me</FormLabel>
         <OutlinedInput
           value={bio}
-          sx={{ padding: "0.5rem" }}
+          sx={{ padding: "1rem 2rem" }}
           onChange={(e) => setBio(e.target.value)}
           multiline
           rows={5}
@@ -108,7 +108,7 @@ const EditProfileModal = ({ user, isOpen, onClose }: IProps) => {
     >
       <Box sx={editModalBoxSxProps}>
         <Box sx={flexRowSxProps}>
-          <Typography variant="h5" color={fontActiveColor} component="h2">
+          <Typography variant="h6" color={fontActiveColor} component="h2">
             Edit Profile
           </Typography>
           <IconButton onClick={onClose}>
