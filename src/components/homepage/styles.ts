@@ -20,7 +20,7 @@ export const contentContainerSxProps: SxProps = {
 }
 
 export const contentSxProps: SxProps = {
-    fontSize: "8rem",
+    fontSize: "5rem",
     fontWeight: 900,
     textTransform: "uppercase",
     color: "white",

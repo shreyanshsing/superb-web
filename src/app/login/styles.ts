@@ -4,10 +4,15 @@ import { Button, SxProps } from "@mui/material";
 
 
 export const formContainerSxProps: SxProps = {
-    padding: '1rem',
-    marginTop: '2rem',
-    marginLeft: '3rem',
+    width: '100%',
+    height: '90vh',
+    padding: '2rem 1rem',
+    margin: '2rem auto',
     overflowY: 'auto !important',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
 }
 
 export const fieldContainerSxProps: SxProps = {
@@ -23,10 +28,10 @@ export const labelSxProps: SxProps = {
 }
 
 export const CustomOutlinedButton = styled(Button)`
-    border-radius: 20px;
-    padding: 1rem;
+    border-radius: 10px;
+    padding: 0.7rem;
     margin: 0.3rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 500;
     text-transform: capitalize;
 `;

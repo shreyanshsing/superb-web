@@ -14,7 +14,7 @@ export const headerConatinerSxProps = (backgroundColor?: string): SxProps => ({
     backgroundColor: backgroundColor || 'transparent',
     zIndex: 100,
     backdropFilter: 'blur(15px)',
-    maring: 0,
+    padding: 0,
     top: 0,
 });
 
@@ -33,7 +33,7 @@ export const headingSxProps: SxProps = {
     fontWeight: 700,
     fontStyle: "italic",
     letterSpacing: 2,
-    fontSize: "4rem",
+    fontSize: "3rem",
     margin: "1.5rem",
 }
 

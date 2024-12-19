@@ -18,7 +18,7 @@ const useImageUpload = () => {
     const getSignedUrl = async (folder: string, file: File) => {
         try {
             const { url, key } = await mutateAsync(prepareUpload(folder, file));
-            return {url, key};
+            return { url, key };
         } catch (error) {
             console.error('Error getting signed URL:', error);
             showSnackbar("Error getting signed URL", "error");

@@ -22,7 +22,7 @@ import {
 } from "@/components/navigation/stylesProps";
 import useCustomRouter from "@/router/index";
 import Routes from "@/router/paths";
-import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import EmailIcon from "@mui/icons-material/Email";
 import PasswordIcon from "@mui/icons-material/Lock";
 import PersonIcon from "@mui/icons-material/Person";
@@ -30,11 +30,13 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import CountryIcon from "@mui/icons-material/LocationOn";
 import { trpc } from "@trpc-client/client";
 import { useSnackbar } from "@/components/snackbar/Provider";
+import { useAppState } from "@/store/store";
+import LocalStorageService from "@/services/localStorageService";
 
 export default function SignUp() {
+  const { dispatch } = useAppState();
   const { navigateTo } = useCustomRouter();
   const { showSnackbar } = useSnackbar();
-  const formRef = useRef<HTMLFormElement>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -52,34 +54,33 @@ export default function SignUp() {
     };
   }, [email, password, fullname, phone, country]);
 
-  const { mutateAsync, isError, isPending, error } =
+  const { mutateAsync, isError, isPending, error, data } =
     trpc.createUser.useMutation();
+  const { mutateAsync: loginUser, data: loginResponse } =
+    trpc.session.useMutation();
 
   useEffect(() => {
     if (isError) {
-      const zodError = error?.data?.zodError;
-      const formattedErrors = Object.entries(zodError?.fieldErrors ?? {})
-        .map(
-          ([field, messages]) =>
-            `${field}: ${(messages as string[]).join(", ")}`
-        )
-        .join("\n");
-      if (formattedErrors) {
-        showSnackbar(formattedErrors, "error");
-        return;
-      }
-      showSnackbar(
-        formattedErrors ?? error?.message?.replaceAll("\n", " "),
-        "error"
-      );
+      showSnackbar(error?.message, "error");
     }
   }, [isError]);
 
   useEffect(() => {
-    if (formRef.current) {
-      formRef.current.scrollIntoView({ behavior: "smooth" });
+    (async () => {
+      if (data) {
+        dispatch({ type: "SET_USER", payload: data });
+        await loginUser({ email, password });
+      }
+    })();
+  }, [data]);
+
+  useEffect(() => {
+    if (loginResponse) {
+      const token = loginResponse?.token;
+      LocalStorageService.setItem("token", token);
+      navigateTo(Routes.JOIN_COMMUNITY);
     }
-  }, []);
+  }, [loginResponse]);
 
   const handleLogin = () => {
     navigateTo(Routes.LOGIN);
@@ -238,19 +239,18 @@ export default function SignUp() {
     return (
       <Grid2 size={12}>
         <Typography
-          variant={"h5"}
+          variant={"h6"}
           marginBottom={"1rem"}
-          sx={{ color: fontColor, fontWeight: 300 }}
+          sx={{ color: fontColor }}
           gutterBottom
         >
-          <Checkbox size={"large"} sx={{ color: fontColor }} />
+          <Checkbox sx={{ color: fontColor }} />
           By signing up, you agree to our Terms & Conditions.{" "}
           <Button
             variant={"text"}
             onClick={handleLogin}
             sx={{
-              fontWeight: 400,
-              fontSize: "1.5rem",
+              fontSize: "1rem",
               marginLeft: "0.5rem",
               textTransform: "capitalize",
             }}
@@ -280,22 +280,8 @@ export default function SignUp() {
   const showHeading = () => {
     return (
       <Box>
-        <Typography
-          variant={"h5"}
-          marginBottom={"1rem"}
-          sx={{ color: fontColor, fontWeight: 300 }}
-          gutterBottom
-        >
-          Start for free <br />
-        </Typography>
-        <Typography
-          variant={"h2"}
-          letterSpacing={2}
-          fontWeight={700}
-          sx={{ color: fontActiveColor }}
-          gutterBottom
-        >
-          Create new account
+        <Typography variant={"h6"} sx={{ color: fontColor }} gutterBottom>
+          Join us! <br />
         </Typography>
       </Box>
     );
@@ -304,14 +290,13 @@ export default function SignUp() {
   const renderLoginBlock = () => {
     return (
       <Box margin={"1rem auto"}>
-        <Typography variant={"h5"} sx={{ color: fontColor, fontWeight: 300 }}>
+        <Typography variant={"h6"} sx={{ color: fontColor }}>
           Already a member?
           <Button
             variant={"text"}
             onClick={handleLogin}
             sx={{
-              fontWeight: 400,
-              fontSize: "1.5rem",
+              fontSize: "1rem",
               marginLeft: "0.5rem",
               textTransform: "capitalize",
             }}
@@ -328,10 +313,10 @@ export default function SignUp() {
       formElement={
         <Box sx={formContainerSxProps}>
           {showHeading()}
-          {renderLoginBlock()}
-          <form onSubmit={handleSignup} style={{ width: "40%" }} ref={formRef}>
+          <form onSubmit={handleSignup} style={{ width: "70%" }}>
             {renderForm()}
           </form>
+          {renderLoginBlock()}
         </Box>
       }
     />

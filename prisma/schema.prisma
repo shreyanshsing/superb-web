@@ -1,27 +1,100 @@
-// schema.prisma
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-  url = env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
 model User {
+  id          String      @id @default(cuid())
+  email       String      @unique
+  name        String
+  password    String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  phone       String?     @default("")
+  country     String?     @default("")
+  wallpaper   String?     @default("")
+  avatar      String?     @default("")
+  bio         String?     @default("")
+  headline    String?     @default("")
+  followers   User[]      @relation("UserFollowers")
+  following   User[]      @relation("UserFollowers")
+  posts       Post[]      @relation("UserPosts") // Relation for authored posts
+  savedPosts  Post[]      @relation("UserSavedPosts") // Relation for saved posts
+  communities Community[] @relation("CommunityMembers")
+  comments    Comment[]
+  likes       Like[]
+  Community   Community[] @relation("CommunityAdmins")
+}
+
+model Community {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  avatar      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  ownerId     String
+  admins      User[]   @relation("CommunityAdmins")
+  members     User[]   @relation("CommunityMembers")
+  posts       Post[]
+}
+
+model Post {
+  id          String   @id @default(cuid())
+  title       String
+  content     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  authorId    String
+  postMediaId String?
+
+  author    User       @relation("UserPosts", fields: [authorId], references: [id])
+  savedBy   User[]     @relation("UserSavedPosts") // Relation for users who saved this post
+  postMedia PostMedia? @relation(fields: [postMediaId], references: [id])
+  comments  Comment[]
+  likes     Like[]
+
+  Community Community[]
+}
+
+model Comment {
   id        String   @id @default(cuid())
-  email     String   @unique
-  name      String   
-  password  String
+  content   String
   createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  phone     String?  @default("")
-  country   String?  @default("")
-  wallpaper String?  @default("")
-  avatar    String?  @default("")
-  followers String[] @default([])
-  following String[] @default([])
-  bio       String?  @default("")
-  headline  String?  @default("")
+  updatedAt DateTime @updatedAt
+  authorId  String
+  postId    String
+
+  author User @relation(fields: [authorId], references: [id])
+  post   Post @relation(fields: [postId], references: [id])
+
+  Like Like[]
+}
+
+model Like {
+  id        String  @id @default(cuid())
+  authorId  String
+  postId    String?
+  commentId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  author  User     @relation(fields: [authorId], references: [id])
+  post    Post?    @relation(fields: [postId], references: [id])
+  comment Comment? @relation(fields: [commentId], references: [id])
+}
+
+model PostMedia {
+  id        String   @id @default(cuid())
+  urls      String[]
+  type      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  post Post[]
 }

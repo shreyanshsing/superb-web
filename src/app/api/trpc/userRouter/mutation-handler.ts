@@ -6,9 +6,9 @@ import { PrismaClientValidationError } from "@prisma/client/runtime/library";
 import { hashPassword } from "../auth/utils";
 import { getUsersByFields } from "./queries-handler";
 
-export const createUser = async(input: z.infer<typeof UserSchema>) => {
+export const createUser = async (input: z.infer<typeof UserSchema>) => {
     try {
-        const user = await getUsersByFields({email: input.email});
+        const user = await getUsersByFields({ email: input.email });
         if (user.length > 0) {
             throw new TRPCError({
                 code: "BAD_REQUEST",
@@ -40,7 +40,7 @@ export const createUser = async(input: z.infer<typeof UserSchema>) => {
     }
 }
 
-export const updateUser = async(input: z.infer<typeof UserUpdateSchema>) => {
+export const updateUser = async (input: z.infer<typeof UserUpdateSchema>) => {
     const userId = input.id;
     const user = await prismaClient.user.findUnique({
         where: {
@@ -67,8 +67,6 @@ export const updateUser = async(input: z.infer<typeof UserUpdateSchema>) => {
                 avatar: input.avatar,
                 bio: input.bio,
                 headline: input.headline,
-                followers: input.followers,
-                following: input.following,
                 password: input.password ? await hashPassword(input.password) : undefined,
             },
         });

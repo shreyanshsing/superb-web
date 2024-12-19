@@ -56,7 +56,7 @@ export default function Login() {
       });
       navigateTo(Routes.DASHBOARD);
     }
-  }, [isSuccess, data, showSnackbar]);
+  }, [isSuccess, data, showSnackbar, dispatch, navigateTo]);
 
   const handleLogin = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -124,7 +124,7 @@ export default function Login() {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          marginTop: "3rem",
+          marginTop: "2rem",
         }}
       >
         <CustomOutlinedButton
@@ -154,15 +154,15 @@ export default function Login() {
 
   const renderSignupBlock = () => {
     return (
-      <Box margin={"1rem auto"}>
-        <Typography variant={"h5"} sx={{ color: fontColor, fontWeight: 300 }}>
+      <Box margin={"2rem auto"}>
+        <Typography variant={"h6"} sx={{ color: fontColor, fontWeight: 300 }}>
           Don&apos;t have an account?
           <Button
             variant={"text"}
             onClick={handleSignup}
             sx={{
               fontWeight: 400,
-              fontSize: "1.5rem",
+              fontSize: "1.2rem",
               marginLeft: "0.5rem",
               textTransform: "capitalize",
             }}
@@ -178,21 +178,13 @@ export default function Login() {
     return (
       <Box>
         <Typography
-          variant={"h5"}
+          variant={"h6"}
           marginBottom={"1rem"}
-          sx={{ color: fontColor, fontWeight: 300 }}
+          sx={{ color: fontColor }}
+          textAlign={"center"}
           gutterBottom
         >
           Welcome back! <br />
-        </Typography>
-        <Typography
-          variant={"h2"}
-          letterSpacing={2}
-          fontWeight={700}
-          sx={{ color: fontActiveColor }}
-          gutterBottom
-        >
-          Login here
         </Typography>
       </Box>
     );
@@ -203,12 +195,12 @@ export default function Login() {
       formElement={
         <Box sx={formContainerSxProps}>
           {showHeading()}
-          {renderSignupBlock()}
-          <form style={{ width: "40%" }}>
+          <form style={{ width: "70%" }}>
             {renderEmailField()}
             {renderPasswordField()}
             {renderLoginButton()}
           </form>
+          {renderSignupBlock()}
         </Box>
       }
     />

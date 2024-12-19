@@ -5,15 +5,15 @@ import { fontActiveColor, fontColor, surfacePrimary, surfaceSecondary } from "./
 
 const theme = createTheme({
     cssVariables: true,
-    colorSchemes: {
-        light: {
-            palette: {
-                primary: {
-                    main: '#3f51b5',
-                },
-            }
-        },
-    },
+    // colorSchemes: {
+    //     light: {
+    //         palette: {
+    //             primary: {
+    //                 main: '#3f51b5',
+    //             },
+    //         }
+    //     },
+    // },
     components: {
         MuiIconButton: {
             styleOverrides: {
@@ -28,7 +28,7 @@ const theme = createTheme({
                     color: `${fontActiveColor} !important`,
                     border: 'none !important',
                     backgroundColor: surfaceSecondary,
-                    borderRadius: '20px',
+                    borderRadius: '10px',
                     padding: '0rem 1rem',
                     marginTop: '0.5rem',
                     fontSize: '1rem',
@@ -73,7 +73,7 @@ const theme = createTheme({
                     color: `${fontActiveColor} !important`,
                     border: 'none !important',
                     backgroundColor: surfacePrimary,
-                    borderRadius: '20px',
+                    borderRadius: '10px',
                 },
             }
         }
