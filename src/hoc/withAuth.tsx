@@ -1,10 +1,10 @@
-import { JSX, useEffect } from "react";
+import { useEffect } from "react";
 import { useAppState } from "@/store/store";
 import useCustomRouter from "@/router";
 import Paths from "@/router/paths";
 
-const withAuth = (WrappedComponent: React.FC) => {
-  const RequiresAuth = (props: JSX.IntrinsicAttributes) => {
+const withAuth = <P extends object>(WrappedComponent: React.ComponentType<P>) => {
+  const RequiresAuth: React.FC<P> = (props) => {
     const { state } = useAppState();
     const { user } = state;
     const { navigateTo } = useCustomRouter();
