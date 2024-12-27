@@ -41,15 +41,11 @@ export const getUserStats = async (id: string) => {
             },
         });
         console.log("User:", user);
-        const followers = user?.followers.length || 0;
-        const following = user?.following.length || 0;
         const posts = 0;
         const tags = 0;
         const saved = 0;
 
         const stats = {
-            followers,
-            following,
             posts,
             tags,
             saved,

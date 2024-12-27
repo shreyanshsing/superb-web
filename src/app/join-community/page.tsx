@@ -20,6 +20,7 @@ import { useSnackbar } from "@/components/snackbar/Provider";
 import useImageUpload from "@/hooks/useImageUpload";
 import { useAppState } from "@/store/store";
 import withAuth from "@/hoc/withAuth";
+import { flushSync } from "react-dom";
 
 const JoinCommunity = () => {
   const { state } = useAppState();
@@ -29,6 +30,7 @@ const JoinCommunity = () => {
   const [step, setStep] = useState(1);
   const [file, setFile] = useState<File | null>(null);
   const [communityName, setCommunityName] = useState("");
+  const [description, setDescription] = useState("");
   const { mutateAsync, isPending, isError } =
     trpc.createCommunity.useMutation();
   const { getSignedUrl, getPublicUrl, uploadFile } = useImageUpload();
@@ -57,7 +59,9 @@ const JoinCommunity = () => {
     const { url, key } = (await getSignedUrl("profiles", file)) || {};
     if (url && key) {
       await uploadFile(url, file);
-      setFileKey(key);
+      flushSync(() => {
+        setFileKey(key);
+      });
     }
   };
 
@@ -70,7 +74,7 @@ const JoinCommunity = () => {
       const publicUrl = getPublicUrl(fileKey!);
       await mutateAsync({
         name: communityName,
-        description: "",
+        description: description,
         avatar: publicUrl,
         ownerId: user?.id,
       });
@@ -162,6 +166,8 @@ const JoinCommunity = () => {
         />
         <OutlinedInput
           placeholder="community description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           rows={5}
           sx={{ padding: "1rem 2rem" }}
           multiline={true}

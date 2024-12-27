@@ -12,6 +12,11 @@ export const createCommunity = async (input: z.infer<typeof CreateCommunitySchem
                 description: input.description,
                 avatar: input.avatar,
                 ownerId: input.ownerId,
+                admins: {
+                    connect: {
+                        id: input.ownerId,
+                    },
+                }
             },
         });
         return community;

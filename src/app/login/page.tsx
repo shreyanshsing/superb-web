@@ -39,11 +39,40 @@ export default function Login() {
   const { mutateAsync, isError, error, data, isSuccess } =
     trpc.session.useMutation();
 
+  const {
+    data: userCommunities,
+    isError: isFailedToGetCommunities,
+    error: getCommunitiesError,
+    isFetching: isFetchingCommunities,
+  } = trpc.getUserCommunities.useQuery(
+    { id: data?.user?.id! },
+    { enabled: isSuccess }
+  );
+
+  useEffect(() => {
+    if (isFailedToGetCommunities) {
+      showSnackbar(
+        getCommunitiesError?.message ?? "Error fetching user communities",
+        "error"
+      );
+    }
+  }, [isFailedToGetCommunities, getCommunitiesError]);
+
+  useEffect(() => {
+    if (isSuccess && !isFetchingCommunities) {
+      if (userCommunities && userCommunities.length > 0) {
+        navigateTo(Routes.DASHBOARD);
+      } else {
+        navigateTo(Routes.JOIN_COMMUNITY);
+      }
+    }
+  }, [userCommunities, isSuccess]);
+
   useEffect(() => {
     if (isError) {
       showSnackbar(error?.message ?? "Error logging in", "error");
     }
-  }, [isError, error, showSnackbar]);
+  }, [isError, error]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -54,9 +83,8 @@ export default function Login() {
         type: USER_ACTIONS.SET_USER,
         payload: data?.user,
       });
-      navigateTo(Routes.DASHBOARD);
     }
-  }, [isSuccess, data, showSnackbar, dispatch, navigateTo]);
+  }, [isSuccess, data]);
 
   const handleLogin = async (event: { preventDefault: () => void }) => {
     event.preventDefault();

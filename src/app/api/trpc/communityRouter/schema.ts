@@ -6,3 +6,7 @@ export const CreateCommunitySchema = z.object({
     avatar: z.string(),
     ownerId: z.string(),
 });
+
+export const GetCommunitySchema = z.object({
+    id: z.string(),
+});
