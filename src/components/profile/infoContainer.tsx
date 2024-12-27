@@ -26,7 +26,7 @@ interface IProps {
 const InfoContainer = ({ isOwnProfile }: IProps) => {
   const { getParams } = useCustomRouter();
   const userId = getParams("user_id");
-  const { getUserDetails, userStats } = useUser({ id: userId as string });
+  const { getUserDetails } = useUser({ id: userId as string });
   const [openEditProfile, setOpenEditProfile] = useState(false);
 
   const avatarComponent = () => {
@@ -74,13 +74,13 @@ const InfoContainer = ({ isOwnProfile }: IProps) => {
     return (
       <Box>
         <Typography variant={"h6"} component={"span"} sx={numberSxProps}>
-          {userStats?.followers}
+          {0}
         </Typography>
         <Typography component={"span"} sx={{ marginRight: "2rem" }}>
-          {userStats?.followers === 1 ? "follower" : "followers"}
+          {"follower"}
         </Typography>
         <Typography variant={"h6"} component={"span"} sx={numberSxProps}>
-          {userStats?.following}
+          {0}
         </Typography>
         <Typography component={"span"}>{"following"}</Typography>
       </Box>
