@@ -6,13 +6,11 @@ import {
   Box,
   Container,
   Divider,
-  InputAdornment,
   OutlinedInput,
   Typography,
 } from "@mui/material";
 import { CustomOutlinedButton, formContainerSxProps } from "../login/styles";
 import { useEffect, useMemo, useRef, useState } from "react";
-import SearchIcon from "@mui/icons-material/Search";
 import { fontActiveColor } from "@/theme/color-palette";
 import { createCommunityBoxSxProps } from "./styles";
 import { trpc } from "@trpc-client/client";
@@ -21,6 +19,7 @@ import useImageUpload from "@/hooks/useImageUpload";
 import { useAppState } from "@/store/store";
 import withAuth from "@/hoc/withAuth";
 import { flushSync } from "react-dom";
+import SearchCommunity from "./search-community";
 
 const JoinCommunity = () => {
   const { state } = useAppState();
@@ -91,17 +90,7 @@ const JoinCommunity = () => {
   const showSearchCommunity = () => {
     return (
       <Box sx={{ width: "70%", margin: "auto", textAlign: "center" }}>
-        <Typography variant="h6" gutterBottom>
-          Join a community
-        </Typography>
-        <OutlinedInput
-          placeholder="search for a community"
-          endAdornment={
-            <InputAdornment position="end">
-              <SearchIcon color={"primary"} />
-            </InputAdornment>
-          }
-        />
+        <SearchCommunity />
         <Divider sx={{ margin: "1.5rem 0", color: fontActiveColor }}>
           <Typography variant="h6" margin={1} gutterBottom>
             or create a new community

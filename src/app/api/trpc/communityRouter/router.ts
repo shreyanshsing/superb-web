@@ -1,7 +1,7 @@
 import { protectedProcedure, router } from "@/server/trpc";
-import { CreateCommunitySchema, GetCommunitySchema } from "./schema";
+import { CreateCommunitySchema, GetAllCommunities, GetCommunitySchema } from "./schema";
 import { createCommunity } from "./mutation-handler";
-import { getUserCommunities } from "./query-handler";
+import { getAllCommunities, getUserCommunities } from "./query-handler";
 
 const communityRouter = router({
     createCommunity: protectedProcedure
@@ -13,7 +13,12 @@ const communityRouter = router({
         .input(GetCommunitySchema)
         .query(async ({ input }) => {
             return getUserCommunities(input);
-        })
+        }),
+        getAllCommunities: protectedProcedure
+        .input(GetAllCommunities)
+        .query(async ({ input }) => {
+            return getAllCommunities(input);
+        }),
 });
 
 export default communityRouter;
