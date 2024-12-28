@@ -1,3 +1,5 @@
+
+import React from "react";
 import { CircularProgress, SxProps } from "@mui/material";
 import { Box } from "@mui/system";
 import {
@@ -8,19 +10,20 @@ import {
   useRef,
   useState,
 } from "react";
+import { ICommunity } from "../cards/community-card";
 
 interface IProps {
   updateOffset: (offest: number) => void;
   limit?: number;
   offset?: number;
   itemRenderer: (
-    item: any,
-    ref: MutableRefObject<any>,
+    item: ICommunity,
+    ref: MutableRefObject<HTMLDivElement>,
     index: number
   ) => JSX.Element;
   containerProps?: SxProps;
   isLoading?: boolean;
-  getItems: () => any[];
+  getItems: () => ICommunity[];
 }
 
 const InfiniteList = ({
@@ -67,10 +70,10 @@ const InfiniteList = ({
   return (
     <Box sx={containerProps}>
       {isLoading && <CircularProgress />}
-      {getItems().map((item, index) => {
+      {getItems().map((item: ICommunity, index: number) => {
         return (
           <Fragment key={index}>
-            {itemRenderer(item, observerRef, index)}
+            {itemRenderer(item, observerRef as MutableRefObject<HTMLDivElement>, index)}
           </Fragment>
         );
       })}

@@ -1,3 +1,4 @@
+import React from "react";
 import { useAppState } from "@/store/store";
 import { Container } from "@mui/material";
 import { resizeContainerSxProps } from "./styles";

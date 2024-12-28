@@ -1,3 +1,5 @@
+
+import React from "react";
 import { Container } from "@mui/material";
 import HorizontalHeader from "../header/horizontal-header";
 import { homepageContainerSxProps } from "./styles";

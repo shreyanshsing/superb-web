@@ -33,7 +33,7 @@ export const headerSxProps: SxProps = {
     padding: 2,
 }
 
-export const imgSxProps: any = {
+export const imgSxProps: SxProps = {
     width: "100%",
     height: "auto",
 }

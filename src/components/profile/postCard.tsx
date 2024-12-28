@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Card,
@@ -13,15 +14,21 @@ import MoreHoriz from "@mui/icons-material/MoreHoriz";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 
 interface IProps {
-  cardData: any;
+  cardData: {
+    mediaUrls?: string[];
+    description?: string;
+    likes?: number;
+    comments?: number;
+    saved?: boolean;
+  }
 }
 
 export default function PostCard({ cardData }: IProps) {
-  const mediaUrl = cardData.mediaUrls?.[0] ?? "";
-  const description = cardData.description;
-  const likes = cardData.likes;
-  const comments = cardData.comments;
-  const isSaved = cardData.saved;
+  const mediaUrl = cardData?.mediaUrls?.[0] ?? "";
+  const description = cardData?.description;
+  const likes = cardData?.likes;
+  const comments = cardData?.comments;
+  const isSaved = cardData?.saved;
 
   return (
     <Card sx={{position: "relative"}}>

@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import CreatePost from "@/components/create-post";
 import withAuth from "@/hoc/withAuth";
 import { fontActiveColor, surfaceSecondary } from "@/theme/color-palette";
@@ -9,6 +10,7 @@ import InfiniteList from "@/components/infinite-list";
 import { MutableRefObject, useCallback, useState } from "react";
 import PreviewPost from "@/components/posts/previewPost";
 import { mockPostData } from "@/utils/mockData";
+import { ICommunity } from "@/components/cards/community-card";
 
 const limit = 20;
 const totalItems = mockPostData.length;
@@ -21,7 +23,7 @@ function Homepage() {
   }, [mockPostData]);
 
   const getRef = useCallback(
-    (index: number, ref: MutableRefObject<any>) => {
+    (index: number, ref: MutableRefObject<HTMLDivElement> | null) => {
       return index + limit < totalItems ? ref : null;
     },
     [totalItems]
@@ -80,8 +82,8 @@ function Homepage() {
             offset={offset}
             limit={limit}
             itemRenderer={(
-              item: any,
-              ref: MutableRefObject<any>,
+              item: ICommunity,
+              ref: MutableRefObject<HTMLDivElement>,
               index: number
             ) => (
               <Grid2

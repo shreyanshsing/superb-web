@@ -1,3 +1,4 @@
+import React from "react";
 import { Grid2 } from "@mui/material";
 import PostCard from "./postCard";
 import { mockPostData } from "@/utils/mockData";

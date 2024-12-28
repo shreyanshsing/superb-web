@@ -1,3 +1,5 @@
+
+import React from "react";
 import {
   Container,
   InputAdornment,
@@ -10,7 +12,7 @@ import { useEffect, useMemo, useState } from "react";
 import useDebounce from "@/utils/debounce";
 import { useSnackbar } from "@/components/snackbar/Provider";
 import InfiniteList from "@/components/infinite-list";
-import CommunityCard from "@/components/cards/community-card";
+import CommunityCard, { ICommunity } from "@/components/cards/community-card";
 
 const SearchCommunity = () => {
   const { showSnackbar } = useSnackbar();
@@ -64,7 +66,7 @@ const SearchCommunity = () => {
         offset={offset}
         containerProps={{ marginTop: "1rem", display: "flex", flexWrap: "wrap", gap: "1rem", flexDirection: "row" }}
         updateOffset={setOffset}
-        itemRenderer={(item) => <CommunityCard community={item} />}
+        itemRenderer={(item: ICommunity) => <CommunityCard community={item} />}
         getItems={() => memoData ?? []}
         isLoading={isFetching}
       />

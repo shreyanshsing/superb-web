@@ -3,6 +3,6 @@ import { z } from "zod";
 import { FileSchema } from "./schema";
 
 
-export const fileUpload = async (input: z.infer<typeof FileSchema>): Promise<any> => {
+export const fileUpload = async (input: z.infer<typeof FileSchema>): Promise<unknown> => {
     return await generateUploadFileUrl(input);
 };

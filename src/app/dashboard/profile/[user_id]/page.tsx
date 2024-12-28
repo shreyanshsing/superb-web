@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import ConnectionsList from "@/components/profile/connectionsList";
 import InfoContainer from "@/components/profile/infoContainer";
 import PostsSection from "@/components/profile/postsTabs";

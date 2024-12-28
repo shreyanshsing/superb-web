@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { Box, Container, Tab, Tabs, Typography } from "@mui/material";
 import { useState } from "react";
 import { activeColors, inactiveColors } from "./connectionsList";

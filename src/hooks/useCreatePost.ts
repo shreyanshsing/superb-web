@@ -17,11 +17,11 @@ const useCreatePost = () => {
         dispatch({ type: LOCAL_POST_ACTIONS.SET_MEDIA, payload: media });
     }
 
-    const setMentions = (mentions: any[]) => {
+    const setMentions = (mentions: unknown[]) => {
         dispatch({ type: LOCAL_POST_ACTIONS.SET_MENTIONS, payload: mentions });
     }
 
-    const setTags = (tag: any) => {
+    const setTags = (tag: unknown) => {
         dispatch({ type: LOCAL_POST_ACTIONS.SET_TAGS, payload: tag });
     }
 

@@ -1,3 +1,5 @@
+
+import React from "react";
 import { Box, Avatar, Button } from "@mui/material";
 import {
   avatarButtonBoxSxProps,
@@ -22,7 +24,7 @@ const AvatarComponent = ({
 
   const handleAvatarUpload = async (file: File) => {
     const folder = "profiles";
-    const { url, key } = (await getSignedUrl(folder, file)) as any;
+    const { url, key } = (await getSignedUrl(folder, file)) as {url : string, key: string};
     await uploadFile(url, file);
     const publicUrl = getPublicUrl(key);
     await updateUser({ id: userId, avatar: publicUrl });

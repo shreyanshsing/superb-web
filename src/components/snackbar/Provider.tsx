@@ -1,7 +1,7 @@
 "use client";
 
 import { Alert, Snackbar } from "@mui/material";
-import { createContext, ReactNode, useContext, useState } from "react";
+import React, { createContext, ReactNode, useContext, useState } from "react";
 
 interface SnackbarContextProps {
   showSnackbar: (message: string, severity: string) => void;

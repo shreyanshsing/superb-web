@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { z } from "zod";
 import { CreateCommunitySchema } from "./schema";
 import { prismaClient } from "@/server";

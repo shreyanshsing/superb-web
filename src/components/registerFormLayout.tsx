@@ -1,3 +1,4 @@
+import React from "react";
 import { Box, Container, Grid2, Typography } from "@mui/material";
 import { registerContainerSxProps } from "./styles";
 import { contentSxProps } from "./homepage/styles";

@@ -1,3 +1,4 @@
+import React from "react";
 import { fontActiveColor } from "@/theme/color-palette";
 import {
   Button,
@@ -8,7 +9,25 @@ import {
   Typography,
 } from "@mui/material";
 
-const CommunityCard = ({ community }: { community: any }) => {
+export interface ICommunity {
+  avatar?: string;
+  name?: string;
+  description?: string;
+  members?: string[];
+  id?: number;
+  user?: string;
+  mediaUrls?: string[];
+  content?: string;
+  likes?: number;
+  comments?: number;
+  category?: string;
+}
+
+interface IProps {
+  community: ICommunity;
+}
+
+const CommunityCard = ({ community }: IProps) => {
   return (
     <Card
       sx={{

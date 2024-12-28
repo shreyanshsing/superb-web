@@ -7,12 +7,12 @@ import LocalStorageService from '@local-storage';
 
 interface AppStateContextProps {
     state: AppState;
-    dispatch: React.Dispatch<any>;
+    dispatch: React.Dispatch<unknown>;
 }
 
 const AppStateContext = createContext<AppStateContextProps | undefined>(undefined);
 
-const usePersistentReducer = (key: string): [AppState, React.Dispatch<any>] => {
+const usePersistentReducer = (key: string): [AppState, React.Dispatch<unknown>] => {
     const [state, dispatch] = useReducer(reducer, AppInitialState, (initial) => {
       const persisted = LocalStorageService.getItem(key);
       return persisted ? JSON.parse(persisted) : initial;
@@ -22,7 +22,7 @@ const usePersistentReducer = (key: string): [AppState, React.Dispatch<any>] => {
       LocalStorageService.setItem(key, JSON.stringify(state));
     }, [key, state]);
   
-    return [state as AppState, dispatch as React.Dispatch<any>];
+    return [state as AppState, dispatch as React.Dispatch<unknown>];
   }
 
 const useAppStore = () => {

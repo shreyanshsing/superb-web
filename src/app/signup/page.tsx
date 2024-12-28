@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import RegisterFormLayout from "@/components/registerFormLayout";
 import {
   Box,
@@ -94,6 +95,7 @@ export default function SignUp() {
       }
       await mutateAsync(payload);
       showSnackbar("User created successfully", "success");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       showSnackbar(error?.message, "error");
     }

@@ -1,3 +1,4 @@
+import React from "react";
 import { Box, Container, IconButton } from "@mui/material";
 import { iconButtonsSxProps, wallpaperSxProps } from "./styled";
 import { DefaultWallPaperProfile } from "@/utils/contants";
@@ -14,7 +15,7 @@ const WallpaperComponent = ({ userId }: { userId: string }) => {
 
   const handleWallpaerUpload = async (file: File) => {
     const folder = "wallpapers";
-    const { url, key } = (await getSignedUrl(folder, file)) as any;
+    const { url, key } = (await getSignedUrl(folder, file)) as {url : string, key: string};
     await uploadFile(url, file);
     const publicUrl = getPublicUrl(key);
     await updateUser({ id: userId, wallpaper: publicUrl });
@@ -37,6 +38,7 @@ const WallpaperComponent = ({ userId }: { userId: string }) => {
     <Container
       maxWidth={false}
       sx={wallpaperSxProps(
+        // @ts-expect-error - Fix this later
         getUserDetails?.wallpaper || DefaultWallPaperProfile
       )}
     >

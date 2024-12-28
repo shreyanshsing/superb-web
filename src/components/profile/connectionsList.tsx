@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import {
   Box,
   Checkbox,
@@ -23,6 +24,7 @@ import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
 import { mockUserData } from "@/utils/mockData";
+import { IUser } from "./editProfileModel";
 
 export const activeColors = {
   color: `${fontActiveColor} !important`,
@@ -51,7 +53,7 @@ const ConnectionsList = () => {
     );
   };
 
-  const showListTile = (user: any, index: number) => {
+  const showListTile = (user: IUser, index: number) => {
     return (
       <ListItem key={`${user.name}-${index}`}>
         <ListItemIcon>
@@ -77,7 +79,7 @@ const ConnectionsList = () => {
           secondaryTypographyProps={{
             marginLeft: "1rem",
           }}
-          secondary={user.title}
+          secondary={user.headline}
         />
       </ListItem>
     );
@@ -86,7 +88,7 @@ const ConnectionsList = () => {
   const showList = () => {
     return (
       <List sx={{ height: "70vh", overflowY: "auto", marginBottom: "2rem" }}>
-        {mockUserData?.map((user, index) => showListTile(user, index))}
+        {mockUserData?.map((user: IUser, index: number) => showListTile(user, index))}
       </List>
     );
   };

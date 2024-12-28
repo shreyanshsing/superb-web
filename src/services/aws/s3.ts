@@ -19,7 +19,7 @@ interface FileSchema {
     // Add other properties if needed
 }
 
-export const generateUploadFileUrl = async (file: FileSchema): Promise<any> => {
+export const generateUploadFileUrl = async (file: FileSchema): Promise<unknown> => {
     const { folder, fileName, fileType } = file;
     const path = `${folder}/${fileName}`;
 

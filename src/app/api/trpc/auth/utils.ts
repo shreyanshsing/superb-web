@@ -11,6 +11,6 @@ export const comparePassword = async (plainPassword: string, hash: string): Prom
     return await bcrypt.compare(plainPassword, hash);
 }
 
-export const decodeAndVerifyJwtToken = async (token: string): Promise<any> => {
+export const decodeAndVerifyJwtToken = async (token: string): Promise<unknown> => {
     return jwt.verify(token, seceret);
 }

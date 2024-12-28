@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+import React from "react";
 import { Box, Container, IconButton, Typography } from "@mui/material";
 import { previewPostContainerSxProps } from "./styles";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -10,7 +10,7 @@ import { useEffect, useMemo, useState } from "react";
 import { fontActiveColor } from "@/theme/color-palette";
 import Carousel from "../carousel";
 
-const PreviewPost = ({ post }: { post?: any }) => {
+const PreviewPost = ({ post }: { post?: IPost }) => {
   const [showMore, setShowMore] = useState(post?.content?.length > 200);
 
   const isMoreThanExpected = useMemo(

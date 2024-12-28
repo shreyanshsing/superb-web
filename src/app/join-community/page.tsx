@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import React from "react";
 import RegisterFormLayout from "@/components/registerFormLayout";
 import {
   Avatar,
@@ -75,10 +77,11 @@ const JoinCommunity = () => {
         name: communityName,
         description: description,
         avatar: publicUrl,
-        ownerId: user?.id,
+        ownerId: user?.id || "",
       });
       showSnackbar("Community created successfully", "success");
-    } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_error: any) {
       showSnackbar("Failed to create community", "error");
     } finally {
       setFile(null);

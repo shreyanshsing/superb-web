@@ -1,7 +1,7 @@
 'use client';
 
 export default class LocalStorageService {
-    static setItem(key: string, value: any) {
+    static setItem(key: string, value: unknown) {
         if (typeof window !== 'undefined') {
             localStorage.setItem(key, JSON.stringify(value));
         } else {

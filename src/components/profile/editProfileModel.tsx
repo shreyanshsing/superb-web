@@ -1,3 +1,5 @@
+
+import React from "react";
 import {
   Modal,
   Box,
@@ -17,8 +19,16 @@ import { labelSxProps } from "@/app/login/styles";
 import AvatarComponent from "./avatarComponent";
 import useUser from "@/hooks/useUser";
 
+export interface IUser {
+  id: string;
+  email: string;
+  name: string;
+  headline: string;
+  bio?: string;
+  avatar: string;
+}
 interface IProps {
-  user: any;
+  user: IUser;
   isOpen: boolean;
   onClose: () => void;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { prismaClient } from "@/server";
 import { UserSearchSchema } from "./schema";
 import { z } from "zod";

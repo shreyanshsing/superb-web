@@ -1,3 +1,5 @@
+
+import React from "react";
 import { Box, Chip, Divider, OutlinedInput, Typography } from "@mui/material";
 import {
   autoSuggestionContainerSxProps,
@@ -13,7 +15,12 @@ interface IProps {
   placeholder?: string;
   showSuggestions?: boolean;
   prefix?: string;
-  callback?: (selected: any[]) => void;
+  callback?: (selected: IContent[]) => void;
+}
+
+interface IContent {
+  id: number;
+  name: string;
 }
 
 const AutoSuggestion = ({
@@ -24,8 +31,8 @@ const AutoSuggestion = ({
 }: IProps) => {
   const [open, setOpen] = useState(false);
   const [searchVal, setSearchVal] = useState("");
-  const [debounce, setDebounce] = useState<any>(null);
-  const [selected, setSelected] = useState<any>([]);
+  const [debounce, setDebounce] = useState<string | null>(null);
+  const [selected, setSelected] = useState<IContent[]>([]);
 
   const debounced = useDebounce(setDebounce, 500);
 
@@ -40,7 +47,7 @@ const AutoSuggestion = ({
   }, [selected]);
 
   const getChip = (
-    content: any,
+    content: IContent,
     key: number,
     disabled?: boolean,
     onDelete?: () => void
@@ -48,13 +55,13 @@ const AutoSuggestion = ({
     return (
       <Chip
         key={key}
-        label={`${prefix}${content.name}`}
+        label={`${prefix}${content?.name}`}
         variant={"filled"}
         color="primary"
         disabled={disabled}
         onDelete={onDelete}
         onClick={() => {
-          setSelected((prev: any) => [...prev, content]);
+          setSelected((prev: IContent[]) => [...prev, content]);
         }}
         sx={{ fontWeight: "bold", cursor: "pointer" }}
       />
@@ -88,7 +95,7 @@ const AutoSuggestion = ({
     );
   };
 
-  const inputComponent = (props: any) => {
+  const inputComponent = (props: object) => {
     return (
       <Box
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
@@ -96,10 +103,10 @@ const AutoSuggestion = ({
         onBlur={() => setOpen(false)}
       >
         <Box sx={chipContainerSxProps(selected.length)}>
-          {selected.map((content: any, index: number) =>
+          {selected.map((content: IContent, index: number) =>
             getChip(content, index, false, () =>
               setSelected(
-                selected.filter((item: any) => item.id !== content.id)
+                selected.filter((item: IContent) => item.id !== content.id)
               )
             )
           )}

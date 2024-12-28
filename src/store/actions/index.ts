@@ -18,7 +18,7 @@ export enum LOCAL_POST_ACTIONS {
 
 export type ACTION_TYPES = {
     type: NAVIGATION_ACTIONS | USER_ACTIONS | LOCAL_POST_ACTIONS,
-    payload: any
+    payload: never
 }
 
 export type APP_ACTION_TYPES = ACTION_TYPES;
