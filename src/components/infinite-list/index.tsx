@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import React from "react";
 import { CircularProgress, SxProps } from "@mui/material";
@@ -17,7 +18,7 @@ interface IProps {
   limit?: number;
   offset?: number;
   itemRenderer: (
-    item: ICommunity,
+    item: any,
     ref: MutableRefObject<HTMLDivElement>,
     index: number
   ) => JSX.Element;

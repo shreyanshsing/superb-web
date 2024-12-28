@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React from "react";
@@ -10,7 +11,6 @@ import InfiniteList from "@/components/infinite-list";
 import { MutableRefObject, useCallback, useState } from "react";
 import PreviewPost from "@/components/posts/previewPost";
 import { mockPostData } from "@/utils/mockData";
-import { ICommunity } from "@/components/cards/community-card";
 
 const limit = 20;
 const totalItems = mockPostData.length;
@@ -82,7 +82,7 @@ function Homepage() {
             offset={offset}
             limit={limit}
             itemRenderer={(
-              item: ICommunity,
+              item: any,
               ref: MutableRefObject<HTMLDivElement>,
               index: number
             ) => (

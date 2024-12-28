@@ -5,6 +5,17 @@ export interface NavigationState {
 
 export interface UserState {
     id: string;
+    name: string;
+    email: string;
+    avatar: string;
+    wallpaper: string;
+    followers: number;
+    following: number;
+    bio: string;
+    headline: string;
+    country: string;
+    location: string;
+    communities: CommunityCompact[];
 }
 
 export interface UserCompact {

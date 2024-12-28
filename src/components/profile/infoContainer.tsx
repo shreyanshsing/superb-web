@@ -34,7 +34,6 @@ const InfoContainer = ({ isOwnProfile }: IProps) => {
     return (
       <Container maxWidth={false} sx={avatarSxProps}>
         <Image
-        // @ts-expect-error - Fix this later
           src={getUserDetails?.avatar || DefaultUserAvatar}
           style={{ borderRadius: "50%", objectFit: "cover" }}
           width={130}
@@ -123,7 +122,7 @@ const InfoContainer = ({ isOwnProfile }: IProps) => {
       <EditProfileModal
         isOpen={openEditProfile}
         onClose={() => setOpenEditProfile(false)}
-        user={getUserDetails}
+        user={getUserDetails!}
       />
     </Container>
   );

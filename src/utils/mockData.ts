@@ -116,7 +116,7 @@ export const mockUserData = [
 
 export const mockPostData = [
     {
-        id: 1,
+        id: "1",
         user: "Jane Smith",
         mediaUrls: [CardImage1, CardImage2, CardImage3],
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
@@ -126,7 +126,7 @@ export const mockPostData = [
         category: POST_MEDIA_CATEGORY.SINGLE_MEDIA,
     },
     {
-        id:   2,
+        id:   "2",
         user: "John Doe",
         mediaUrls: [CardImage2, CardImage3],
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
@@ -136,7 +136,7 @@ export const mockPostData = [
         category: POST_MEDIA_CATEGORY.MULTI_MEDIA,
     },
     {
-        id: 3,
+        id:  "3",
         user: "Jesselyn Wang",
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
         likes: 100,

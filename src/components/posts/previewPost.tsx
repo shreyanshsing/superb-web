@@ -10,7 +10,15 @@ import { useEffect, useMemo, useState } from "react";
 import { fontActiveColor } from "@/theme/color-palette";
 import Carousel from "../carousel";
 
-const PreviewPost = ({ post }: { post?: IPost }) => {
+export interface IPost {
+  content: string;
+  mediaUrls: string[];
+}
+interface IProps {
+  post: IPost;
+}
+
+const PreviewPost = ({ post }: IProps) => {
   const [showMore, setShowMore] = useState(post?.content?.length > 200);
 
   const isMoreThanExpected = useMemo(

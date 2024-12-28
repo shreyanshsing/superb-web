@@ -18,17 +18,11 @@ import { useState } from "react";
 import { labelSxProps } from "@/app/login/styles";
 import AvatarComponent from "./avatarComponent";
 import useUser from "@/hooks/useUser";
+import { UserState } from "@/store/states";
 
-export interface IUser {
-  id: string;
-  email: string;
-  name: string;
-  headline: string;
-  bio?: string;
-  avatar: string;
-}
+
 interface IProps {
-  user: IUser;
+  user: UserState;
   isOpen: boolean;
   onClose: () => void;
 }

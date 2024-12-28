@@ -1,5 +1,6 @@
 import { useSnackbar } from '@/components/snackbar/Provider';
 import { USER_ACTIONS } from '@/store/actions';
+import { UserState } from '@/store/states';
 import { useAppState } from '@/store/store';
 import { UserUpdateSchema } from '@api/trpc/userRouter/schema';
 import { trpc } from '@trpc-client/client';
@@ -59,7 +60,7 @@ const useUser = ({ id }: IProps) => {
     }
 
     const getUserDetails = useMemo(() => {
-        return user || userData;
+        return (user || userData) as UserState;
     }, [user, userData]);
 
     return {
