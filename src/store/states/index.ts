@@ -4,7 +4,7 @@ export interface NavigationState {
 }
 
 export interface UserState {
-    user: unknown;
+    id: string;
 }
 
 export interface UserCompact {
@@ -47,7 +47,7 @@ export const snackbarInitialState: SnackbarState = {
 }
 
 export type AppState = {
-    user: unknown,
+    user: UserState | null,
     navigation: NavigationState,
     localPost: LocalPostState,
 }

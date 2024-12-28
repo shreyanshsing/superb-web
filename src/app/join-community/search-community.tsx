@@ -33,7 +33,7 @@ const SearchCommunity = () => {
     trpc.getAllCommunities.useQuery(payload);
 
   const memoData = useMemo(() => {
-    return data;
+    return data as ICommunity[];
   }, [data]);
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const SearchCommunity = () => {
         containerProps={{ marginTop: "1rem", display: "flex", flexWrap: "wrap", gap: "1rem", flexDirection: "row" }}
         updateOffset={setOffset}
         itemRenderer={(item: ICommunity) => <CommunityCard community={item} />}
-        getItems={() => memoData ?? []}
+        getItems={() => memoData}
         isLoading={isFetching}
       />
     </Container>

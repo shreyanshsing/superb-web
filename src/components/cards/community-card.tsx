@@ -14,7 +14,7 @@ export interface ICommunity {
   name?: string;
   description?: string;
   members?: string[];
-  id?: number;
+  id?: string;
   user?: string;
   mediaUrls?: string[];
   content?: string;
