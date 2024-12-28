@@ -15,6 +15,7 @@ interface IProps {
   callback: (files: File[]) => void;
 }
 
+
 const DragAndDrop = ({ callback }: IProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [files, setFiles] = useState<File[]>([]);
