@@ -15,7 +15,6 @@ import ProfileIcon from "@mui/icons-material/AccountCircle";
 import ExploreIcon from "@mui/icons-material/Explore";
 import SendIcon from "@mui/icons-material/Send";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SettingsIcon from "@mui/icons-material/Settings";
 import {
   containerSxProps,
@@ -63,11 +62,6 @@ const navOptions = (): INavOption[] => {
       icon: <NotificationsIcon sx={{ fontSize: 25 }} />,
       text: "Notifications",
       route: Paths.NOTIFICATIONS,
-    },
-    {
-      icon: <AddCircleOutlineIcon sx={{ fontSize: 25 }} />,
-      text: "Create",
-      route: Paths.CREATE,
     },
     {
       icon: <ProfileIcon sx={{ fontSize: 25 }} />,
