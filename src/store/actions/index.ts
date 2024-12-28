@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export enum NAVIGATION_ACTIONS {
     SET_CURRENT_INDEX = 'SET_CURRENT_INDEX',
     SET_IS_COLLAPSED = 'SET_IS_COLLAPSED',
@@ -18,7 +19,7 @@ export enum LOCAL_POST_ACTIONS {
 
 export type ACTION_TYPES = {
     type: NAVIGATION_ACTIONS | USER_ACTIONS | LOCAL_POST_ACTIONS,
-    payload: never
+    payload: any
 }
 
 export type APP_ACTION_TYPES = ACTION_TYPES;

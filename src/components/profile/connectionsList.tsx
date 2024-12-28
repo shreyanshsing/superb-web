@@ -24,7 +24,7 @@ import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
 import { mockUserData } from "@/utils/mockData";
-import { IUser } from "./editProfileModel";
+import { UserState } from "@/store/states";
 
 export const activeColors = {
   color: `${fontActiveColor} !important`,
@@ -53,7 +53,7 @@ const ConnectionsList = () => {
     );
   };
 
-  const showListTile = (user: IUser, index: number) => {
+  const showListTile = (user: UserState, index: number) => {
     return (
       <ListItem key={`${user.name}-${index}`}>
         <ListItemIcon>
@@ -88,7 +88,7 @@ const ConnectionsList = () => {
   const showList = () => {
     return (
       <List sx={{ height: "70vh", overflowY: "auto", marginBottom: "2rem" }}>
-        {mockUserData?.map((user: IUser, index: number) => showListTile(user, index))}
+        {mockUserData?.map((user: UserState, index: number) => showListTile(user, index))}
       </List>
     );
   };

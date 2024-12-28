@@ -1,7 +1,8 @@
+import { UserState } from "@/store/states";
 import { CardImage1, CardImage2, CardImage3 } from "./contants";
 import { POST_MEDIA_CATEGORY } from "./enums";
 
-export const mockUserData = [
+export const mockUserData: UserState[] = [
     {
         id: "1",
         name: "Jane Smith",
@@ -12,6 +13,9 @@ export const mockUserData = [
         avatar: "/assets/images/user.png",
         wallpaper: "/assets/images/wallpaper2.jpg",
         email: "test@gmail.com",
+        bio: "",
+        country: "",
+        communities: []
     },
     {
         id: "2",
@@ -23,6 +27,9 @@ export const mockUserData = [
         avatar: "/assets/images/user.png",
         wallpaper: "/assets/images/wallpaper1.jpg",
         email: "test@gmail.com",
+        bio: "",
+        country: "",
+        communities: []
     },
     {
         id: "3",
@@ -34,6 +41,9 @@ export const mockUserData = [
         avatar: "/assets/images/user.png",
         wallpaper: "/assets/images/wallpaper2.jpg",
         email: "test@gmail.com",
+        bio: "",
+        country: "",
+        communities: []
     },
     {
         id: "4",
@@ -45,6 +55,9 @@ export const mockUserData = [
         avatar: "/assets/images/user.png",
         wallpaper: "/assets/images/wallpaper1.jpg",
         email: "test@gmail.com",
+        bio: "",
+        country: "",
+        communities: []
     },
     {
         id: "5",
@@ -56,6 +69,9 @@ export const mockUserData = [
         avatar: "/assets/images/user.png",
         wallpaper: "/assets/images/wallpaper3.jpg",
         email: "test@gmail.com",
+        bio: "",
+        country: "",
+        communities: []
     },
     {
         id: "6",
@@ -67,6 +83,9 @@ export const mockUserData = [
         avatar: "/assets/images/user.png",
         wallpaper: "/assets/images/wallpaper4.jpg",
         email: "test@gmail.com",
+        bio: "",
+        country: "",
+        communities: []
     },
     {
         id: "7",
@@ -78,6 +97,9 @@ export const mockUserData = [
         avatar: "/assets/images/user.png",
         wallpaper: "/assets/images/wallpaper5.jpg",
         email: "test@gmail.com",
+        bio: "",
+        country: "",
+        communities: []
     },
     {
         id: "8",
@@ -89,6 +111,9 @@ export const mockUserData = [
         avatar: "/assets/images/user.png",
         wallpaper: "/assets/images/wallpaper6.jpg",
         email: "test@gmail.com",
+        bio: "",
+        country: "",
+        communities: []
     },
     {
         id: "9",
@@ -100,6 +125,9 @@ export const mockUserData = [
         avatar: "/assets/images/user.png",
         wallpaper: "/assets/images/wallpaper7.jpg",
         email: "test@gmail.com",
+        bio: "",
+        country: "",
+        communities: []
     },
     {
         id: "10",
@@ -111,6 +139,9 @@ export const mockUserData = [
         following: 300,
         avatar: "/assets/images/user.png",
         wallpaper: "/assets/images/wallpaper8.jpg",
+        bio: "",
+        country: "",
+        communities: []
     },
 ];
 

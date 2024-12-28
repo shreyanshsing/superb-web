@@ -57,7 +57,10 @@ const JoinCommunity = () => {
     if (!file) {
       return;
     }
-    const { url, key } = (await getSignedUrl("profiles", file)) || {};
+    const { url, key } = (await getSignedUrl("profiles", file)) as {
+      url: string;
+      key: string;
+    };
     if (url && key) {
       await uploadFile(url, file);
       flushSync(() => {
@@ -80,8 +83,8 @@ const JoinCommunity = () => {
         ownerId: user?.id || "",
       });
       showSnackbar("Community created successfully", "success");
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (_error: any) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error: any) {
       showSnackbar("Failed to create community", "error");
     } finally {
       setFile(null);

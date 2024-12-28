@@ -7,7 +7,7 @@ const fileUploadRouter = router({
     .input(FileSchema)
     .mutation(async ({ input }) => {
       console.log("input", input);
-      const { url, key } = await fileUpload(input);
+      const { url, key } = await fileUpload(input) as { url: string, key: string };
       return { url, key };
     }),
 });

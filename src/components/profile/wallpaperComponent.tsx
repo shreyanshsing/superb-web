@@ -38,7 +38,6 @@ const WallpaperComponent = ({ userId }: { userId: string }) => {
     <Container
       maxWidth={false}
       sx={wallpaperSxProps(
-        // @ts-expect-error - Fix this later
         getUserDetails?.wallpaper || DefaultWallPaperProfile
       )}
     >
