@@ -41,18 +41,13 @@ const PreviewPost = ({ post }: { post?: any }) => {
       >
         <Box>
           <Typography
-            variant={"h6"}
+            variant={"body1"}
             color={fontActiveColor}
-            sx={{ fontWeight: "bold", padding: 0, margin: 0 }}
+            sx={{ fontWeight: 500 }}
           >
-            {post?.title ?? "Post Title"}
+            {"Shreyansh Singh"}
           </Typography>
-          <Typography variant={"subtitle2"}>
-            {"by "}
-            <strong style={{ color: fontActiveColor }}>
-              {"Shreyansh Singh"}
-            </strong>
-          </Typography>
+          <Typography variant={"body2"}>{"2 hours ago"}</Typography>
         </Box>
         <IconButton>
           <MoreVertIcon />
@@ -73,53 +68,10 @@ const PreviewPost = ({ post }: { post?: any }) => {
     );
   };
 
-  const showCommunities = () => {
-    return (
-      <Box sx={{ padding: "0.5rem 1rem" }}>
-        <Typography
-          variant={"body2"}
-          component={"a"}
-          sx={{
-            color: fontActiveColor,
-            fontWeight: "bold",
-            cursor: "pointer",
-            textDecoration: "underline",
-          }}
-        >
-          {post?.tags?.map((tag: any) => `#${tag.name}`).join(", ") ??
-            "Community Tags"}
-        </Typography>
-      </Box>
-    );
-  };
-
-  const showMentions = () => {
-    return (
-      <Box sx={{ padding: "0.5rem 1rem" }}>
-        <Typography
-          variant={"body2"}
-          component={"a"}
-          sx={{
-            color: fontActiveColor,
-            fontWeight: "bold",
-            cursor: "pointer",
-            textDecoration: "underline",
-          }}
-        >
-          {post?.mentions
-            ?.map((mention: any) => `@${mention.name}`)
-            .join(", ") ?? "Mentioned People"}
-        </Typography>
-      </Box>
-    );
-  };
-
   const showContent = () => {
     return (
       <Box>
-        {showCommunities()}
-        {showMentions()}
-        <Typography variant={"body2"} sx={{ padding: "0rem 1rem " }}>
+        <Typography variant={"body2"} sx={{ padding: "1rem " }}>
           {getContent ?? "Post Content"}
           {isMoreThanExpected && !showMore && "..."}
           {isMoreThanExpected && (

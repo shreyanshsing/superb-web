@@ -5,31 +5,37 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("PROD_DATABASE_URL")
-  // connect to local database when in development
+  // Use the directUrl for local development
   directUrl = env("DIRECT_DATABASE_URL")
 }
 
 model User {
-  id          String      @id @default(cuid())
-  email       String      @unique
-  name        String
-  password    String
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  phone       String?     @default("")
-  country     String?     @default("")
-  wallpaper   String?     @default("")
-  avatar      String?     @default("")
-  bio         String?     @default("")
-  headline    String?     @default("")
-  followers   User[]      @relation("UserFollowers")
-  following   User[]      @relation("UserFollowers")
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  phone     String?  @default("")
+  country   String?  @default("")
+  wallpaper String?  @default("")
+  avatar    String?  @default("")
+  bio       String?  @default("")
+  headline  String?  @default("")
+
+  // Relationships
+  followers   User[]      @relation("UserFollowers", map: "FK_User_Followers")
+  following   User[]      @relation("UserFollowers", map: "FK_User_Following")
   posts       Post[]      @relation("UserPosts") // Relation for authored posts
   savedPosts  Post[]      @relation("UserSavedPosts") // Relation for saved posts
-  communities Community[] @relation("CommunityMembers")
+  communities Community[] @relation("CommunityMembers") // Communities the user is a member of
+  adminOf     Community[] @relation("CommunityAdmins") // Communities the user administers
   comments    Comment[]
   likes       Like[]
-  Community   Community[] @relation("CommunityAdmins")
+
+  Community Community[]
+
+  Post Post[] @relation("PostMentions")
 }
 
 model Community {
@@ -40,27 +46,31 @@ model Community {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   ownerId     String
-  admins      User[]   @relation("CommunityAdmins")
-  members     User[]   @relation("CommunityMembers")
-  posts       Post[]
+
+  // Relationships
+  owner   User   @relation(fields: [ownerId], references: [id])
+  admins  User[] @relation("CommunityAdmins")
+  members User[] @relation("CommunityMembers")
+  posts   Post[] @relation("CommunityPosts")
 }
 
 model Post {
   id          String   @id @default(cuid())
-  title       String
   content     String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   authorId    String
+  communityId String?
   postMediaId String?
 
+  // Relationships
   author    User       @relation("UserPosts", fields: [authorId], references: [id])
-  savedBy   User[]     @relation("UserSavedPosts") // Relation for users who saved this post
+  community Community? @relation("CommunityPosts", fields: [communityId], references: [id])
+  savedBy   User[]     @relation("UserSavedPosts")
+  mentions  User[]     @relation("PostMentions")
   postMedia PostMedia? @relation(fields: [postMediaId], references: [id])
   comments  Comment[]
   likes     Like[]
-
-  Community Community[]
 }
 
 model Comment {
@@ -71,10 +81,10 @@ model Comment {
   authorId  String
   postId    String
 
-  author User @relation(fields: [authorId], references: [id])
-  post   Post @relation(fields: [postId], references: [id])
-
-  Like Like[]
+  // Relationships
+  author User   @relation(fields: [authorId], references: [id])
+  post   Post   @relation(fields: [postId], references: [id])
+  likes  Like[]
 }
 
 model Like {
@@ -86,6 +96,7 @@ model Like {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  // Relationships
   author  User     @relation(fields: [authorId], references: [id])
   post    Post?    @relation(fields: [postId], references: [id])
   comment Comment? @relation(fields: [commentId], references: [id])
@@ -98,5 +109,6 @@ model PostMedia {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  post Post[]
+  // Relationships
+  posts Post[]
 }

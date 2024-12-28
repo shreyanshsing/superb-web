@@ -10,7 +10,6 @@ export const previewPostContainerSxProps: SxProps = {
 
 export const createPostContainerSxProps: SxProps = {
     width: "100%",
-    height: "95vh",
     borderRadius: "20px",
     boxShadow: 2,
     display: "flex",
@@ -36,6 +35,6 @@ export const headerSxProps: SxProps = {
 
 export const imgSxProps: any = {
     width: "100%",
-    height: "100%",
+    height: "90%",
     objectFit: "cover",
 }

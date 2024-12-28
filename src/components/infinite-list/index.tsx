@@ -1,5 +1,5 @@
 import { CircularProgress, SxProps } from "@mui/material";
-import { Container } from "@mui/system";
+import { Box } from "@mui/system";
 import {
   Fragment,
   MutableRefObject,
@@ -13,7 +13,11 @@ interface IProps {
   updateOffset: (offest: number) => void;
   limit?: number;
   offset?: number;
-  itemRenderer: (item: any, ref: MutableRefObject<any>) => JSX.Element;
+  itemRenderer: (
+    item: any,
+    ref: MutableRefObject<any>,
+    index: number
+  ) => JSX.Element;
   containerProps?: SxProps;
   isLoading?: boolean;
   getItems: () => any[];
@@ -33,7 +37,7 @@ const InfiniteList = ({
 
   const update = useCallback(() => {
     updateOffset(offest);
-  }, [ offest, updateOffset]);
+  }, [offest, updateOffset]);
 
   useEffect(() => {
     update();
@@ -61,14 +65,16 @@ const InfiniteList = ({
   }, [fetch, limit, offset]);
 
   return (
-    <Container sx={containerProps}>
+    <Box sx={containerProps}>
       {isLoading && <CircularProgress />}
       {getItems().map((item, index) => {
         return (
-          <Fragment key={index}>{itemRenderer(item, observerRef)}</Fragment>
+          <Fragment key={index}>
+            {itemRenderer(item, observerRef, index)}
+          </Fragment>
         );
       })}
-    </Container>
+    </Box>
   );
 };
 

@@ -7,7 +7,7 @@ import { trpc } from "@trpc-client/client";
 import SuperJSON from "superjson";
 import LocalStorageService from "@local-storage";
 
-const url = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3000/api/trpc";
+const url = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_PROD_API_URL : process.env.NEXT_PUBLIC_DEV_API_URL;
 
 export const Provider = ({ children }: { children: ReactNode }) => {
   const [queryClient] = useState(
@@ -25,7 +25,7 @@ export const Provider = ({ children }: { children: ReactNode }) => {
     links: [
       httpBatchLink({
         transformer: SuperJSON,
-        url: url,
+        url: url!,
         headers() {
           return {
             Authorization: "Bearer " + LocalStorageService.getItem("token"),
