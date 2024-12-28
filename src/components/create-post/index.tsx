@@ -20,19 +20,13 @@ import ImageIcon from "@mui/icons-material/Image";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PublicIcon from "@mui/icons-material/Public";
 import PeopleIcon from "@mui/icons-material/People";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { fontActiveColor } from "@/theme/color-palette";
+import CreatePostModal from "./modal";
 
 const CreatePost = () => {
-  const inputRef = useRef<HTMLInputElement>(null);
   const [foucused, setFocused] = useState(false);
   const [privacy, setPrivacy] = useState("public");
-
-  useEffect(() => {
-    if (inputRef.current && foucused) {
-      inputRef.current.focus();
-    }
-  }, [foucused]);
 
   const showSelect = () => {
     return (
@@ -61,22 +55,19 @@ const CreatePost = () => {
   };
 
   return (
-    <Box sx={containerBoxProps}>
+    <Box width={"100%"} sx={containerBoxProps}>
+      {foucused && (
+        <CreatePostModal isOpen={foucused} onClose={() => setFocused(false)} />
+      )}
       <Box sx={inputContainerProps}>
         <Avatar sx={avatarProps} src={"/assets/images/user.png"} />
         <OutlinedInput
-          inputRef={inputRef}
           placeholder="What's on your mind?"
-          multiline={foucused}
-          rows={foucused ? 5 : 1}
           fullWidth
           sx={{
             paddingLeft: 8,
-            paddingTop: foucused ? 2 : 0,
-            transition: "ease-in-out 0.2s",
           }}
           onClick={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
         />
         <IconButton sx={emojiIconProps}>
           <EmojiEmotionsIcon />

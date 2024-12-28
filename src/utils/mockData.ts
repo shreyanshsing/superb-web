@@ -108,7 +108,7 @@ export const mockPostData = [
     {
         id: 1,
         user: "Jane Smith",
-        mediaUrls: [CardImage1],
+        mediaUrls: [CardImage1, CardImage2, CardImage3],
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
         likes: 100,
         comments: 50,
@@ -128,7 +128,6 @@ export const mockPostData = [
     {
         id: 3,
         user: "Jesselyn Wang",
-        mediaUrls: [CardImage3],
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
         likes: 100,
         comments: 50,

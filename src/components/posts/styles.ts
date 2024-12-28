@@ -35,6 +35,5 @@ export const headerSxProps: SxProps = {
 
 export const imgSxProps: any = {
     width: "100%",
-    height: "90%",
-    objectFit: "cover",
+    height: "auto",
 }

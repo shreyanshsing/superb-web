@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { Box, Container, IconButton, Typography } from "@mui/material";
-import { imgSxProps, previewPostContainerSxProps } from "./styles";
-import { DefaultWallPaperProfile } from "@/utils/contants";
+import { previewPostContainerSxProps } from "./styles";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import SendIcon from "@mui/icons-material/Send";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
@@ -9,6 +8,7 @@ import TurnedInNotIcon from "@mui/icons-material/TurnedInNot";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useEffect, useMemo, useState } from "react";
 import { fontActiveColor } from "@/theme/color-palette";
+import Carousel from "../carousel";
 
 const PreviewPost = ({ post }: { post?: any }) => {
   const [showMore, setShowMore] = useState(post?.content?.length > 200);
@@ -33,7 +33,7 @@ const PreviewPost = ({ post }: { post?: any }) => {
     return (
       <Box
         sx={{
-          padding: "1rem",
+          padding: "1rem 2rem",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "flex-start",
@@ -57,13 +57,12 @@ const PreviewPost = ({ post }: { post?: any }) => {
   };
 
   const showImage = () => {
+    if (!post?.mediaUrls) {
+      return;
+    }
     return (
-      <Box sx={{ padding: 0, margin: 0 }}>
-        <img
-          src={DefaultWallPaperProfile}
-          alt={"post-image"}
-          style={imgSxProps}
-        />
+      <Box>
+        <Carousel srcset={post?.mediaUrls} />
       </Box>
     );
   };
@@ -71,7 +70,7 @@ const PreviewPost = ({ post }: { post?: any }) => {
   const showContent = () => {
     return (
       <Box>
-        <Typography variant={"body2"} sx={{ padding: "1rem " }}>
+        <Typography variant={"body2"} sx={{ padding: "1rem 2rem" }}>
           {getContent ?? "Post Content"}
           {isMoreThanExpected && !showMore && "..."}
           {isMoreThanExpected && (
