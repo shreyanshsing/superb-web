@@ -71,7 +71,7 @@ const InfiniteList = ({
   return (
     <Box sx={containerProps}>
       {isLoading && <CircularProgress />}
-      {getItems().map((item: ICommunity, index: number) => {
+      {getItems()?.map((item: ICommunity, index: number) => {
         return (
           <Fragment key={index}>
             {itemRenderer(item, observerRef as MutableRefObject<HTMLDivElement>, index)}

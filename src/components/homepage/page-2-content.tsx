@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Container, Grid2 } from "@mui/material";
 import { page2ContainerSxProps } from "./styles";
@@ -29,18 +28,14 @@ const tilesContent = [
     title: "GET READY FOR SOME FUN",
     description: "Have fun, make memories",
     image: "/assets/images/fun.avif",
-  }
+  },
 ];
 
 const Page2Content = () => {
-
   return (
-    <Container
-      id={"page-2-container"}
-      sx={page2ContainerSxProps}
-    >
+    <Container id={"page-2-container"} sx={page2ContainerSxProps}>
       <Grid2 container spacing={2}>
-        {tilesContent.map((tile) => (
+        {tilesContent?.map((tile) => (
           <TileCard
             key={tile.title}
             title={tile.title}

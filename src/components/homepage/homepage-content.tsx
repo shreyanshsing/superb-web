@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Box, Container, Typography } from "@mui/material";
 import {
@@ -35,7 +34,7 @@ const HomepageContent = () => {
 
   return (
     <Container sx={contentContainerSxProps}>
-      {content.map((item, index) => {
+      {content?.map((item, index) => {
         return (
           <Typography variant={"h1"} key={index} sx={contentSxProps}>
             {"#"}

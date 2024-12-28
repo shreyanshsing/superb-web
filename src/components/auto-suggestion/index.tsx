@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Box, Chip, Divider, OutlinedInput, Typography } from "@mui/material";
 import {
@@ -73,7 +72,7 @@ const AutoSuggestion = ({
       <Box>
         <Typography>{"suggested for you"}</Typography>
         <Box sx={chipContainerSxProps()}>
-          {mockSuggestions.map((suggestion) =>
+          {mockSuggestions?.map((suggestion) =>
             getChip(suggestion, suggestion.id, selected.includes(suggestion))
           )}
         </Box>
@@ -87,7 +86,7 @@ const AutoSuggestion = ({
       <Box>
         <Typography>{debounce && "search results"}</Typography>
         <Box sx={chipContainerSxProps()}>
-          {mockCommunities.map((suggestion) =>
+          {mockCommunities?.map((suggestion) =>
             getChip(suggestion, suggestion.id, selected.includes(suggestion))
           )}
         </Box>
@@ -103,7 +102,7 @@ const AutoSuggestion = ({
         onBlur={() => setOpen(false)}
       >
         <Box sx={chipContainerSxProps(selected.length)}>
-          {selected.map((content: IContent, index: number) =>
+          {selected?.map((content: IContent, index: number) =>
             getChip(content, index, false, () =>
               setSelected(
                 selected.filter((item: IContent) => item.id !== content.id)

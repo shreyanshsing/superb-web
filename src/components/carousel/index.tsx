@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Box, IconButton } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -30,7 +29,7 @@ const Carousel = ({ srcset }: IProps) => {
           transform: `translateX(-${currentItem * 100}%)`,
         }}
       >
-        {srcset.map((src, index) => (
+        {srcset?.map((src, index) => (
           <img
             key={index}
             src={src}

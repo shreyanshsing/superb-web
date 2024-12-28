@@ -33,7 +33,7 @@ import { useAppState } from "@store/store";
 import { ACTION_TYPES, NAVIGATION_ACTIONS } from "@store/actions";
 import useCustomRouter from "@/router";
 import Paths from "@/router/paths";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
 import LocalStorageService from "@/services/localStorageService";
 
 interface INavOption {
@@ -78,7 +78,7 @@ const navOptions = (): INavOption[] => {
       icon: <LogoutIcon sx={{ fontSize: 25 }} />,
       text: "Logout",
       route: "logout",
-    }
+    },
   ];
   return data;
 };
@@ -147,7 +147,7 @@ export default function BottomNavigation() {
         {isCollapsed ? "S" : "Superb"}
       </Typography>
       <List sx={listSxProps}>
-        {navOptions().map((option: INavOption, index: number) => (
+        {navOptions()?.map((option: INavOption, index: number) => (
           <ListItem
             key={index}
             sx={currenStep === index ? listItemActiveSxProps : listItemSxProps}
